@@ -14,6 +14,7 @@ class AppState extends ChangeNotifier {
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       description: 'A dystopian social science fiction novel and cautionary tale about the dangers of totalitarianism.',
+      durationSeconds: 39600, // 11 hours
     ),
     Audiobook(
       id: 'mobydick',
@@ -24,6 +25,7 @@ class AppState extends ChangeNotifier {
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
       description: 'A classic tale of revenge and obsession on the high seas, featuring Captain Ahab and the white whale.',
+      durationSeconds: 79224, // 22 hours
     ),
     Audiobook(
       id: 'gatsby',
@@ -34,6 +36,7 @@ class AppState extends ChangeNotifier {
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
       description: 'A portrait of the Jazz Age in all of its decadence and excess, told through the eyes of Nick Carraway.',
+      durationSeconds: 18000, // 5 hours
     ),
     Audiobook(
       id: 'pride',
@@ -44,6 +47,7 @@ class AppState extends ChangeNotifier {
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3',
       description: 'A romantic novel of manners that depicts issues of marriage, morality, and misconceptions.',
+      durationSeconds: 52052, // 14.5 hours
     ),
     // --- New Dummy Books Below ---
     Audiobook(
@@ -55,6 +59,7 @@ class AppState extends ChangeNotifier {
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3',
       description: 'A heart-pounding journey of discovery and courage set in a mysterious world.',
+      durationSeconds: 20800, // ~5.8 hours
     ),
     Audiobook(
       id: 'mystery-clock',
@@ -65,6 +70,7 @@ class AppState extends ChangeNotifier {
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3',
       description: 'When an old clock goes missing in a sleepy town, secrets unravel and friendships are tested.',
+      durationSeconds: 14100, // ~3.9 hours
     ),
     Audiobook(
       id: 'galactic-voyages',
@@ -75,6 +81,7 @@ class AppState extends ChangeNotifier {
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3',
       description: 'Join Captain Reyes as they explore far-off galaxies and confront cosmic dangers.',
+      durationSeconds: 37200, // 10.3 hours
     ),
     Audiobook(
       id: 'crimson-sky',
@@ -85,6 +92,7 @@ class AppState extends ChangeNotifier {
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3',
       description: 'A sweeping historical drama of love, loss, and hope in war-torn landscapes.',
+      durationSeconds: 28100, // ~7.8 hours
     ),
     Audiobook(
       id: 'whispers-wind',
@@ -95,6 +103,7 @@ class AppState extends ChangeNotifier {
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3',
       description: 'Poignant poetic tales that drift on the breath of the moors.',
+      durationSeconds: 15000, // ~4.2 hours
     ),
     Audiobook(
       id: 'last-alchemist',
@@ -105,6 +114,7 @@ class AppState extends ChangeNotifier {
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3',
       description: 'A tale of ancient secrets, modern dangers, and the quest for a lost formula.',
+      durationSeconds: 31200, // 8.7 hours
     ),
     Audiobook(
       id: 'silent-streets',
@@ -115,6 +125,7 @@ class AppState extends ChangeNotifier {
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3',
       description: 'Urban noir at its finest, where the shadows whisper and justice is hard-won.',
+      durationSeconds: 11000, // ~3.1 hours
     ),
     Audiobook(
       id: 'ocean-dreams',
@@ -125,6 +136,7 @@ class AppState extends ChangeNotifier {
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3',
       description: 'A magical realism journey where the ocean waves hold memories and futures.',
+      durationSeconds: 17490, // ~4.8 hours
     ),
     Audiobook(
       id: 'ancient-gates',
@@ -135,6 +147,7 @@ class AppState extends ChangeNotifier {
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3',
       description: 'Fantasy adventure into long-lost realms inspired by ancient Asian folklore.',
+      durationSeconds: 20300, // ~5.6 hours
     ),
     Audiobook(
       id: 'edge-reality',
@@ -145,6 +158,7 @@ class AppState extends ChangeNotifier {
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3',
       description: 'Science, conspiracy, and heart-pounding thriller at the boundary of the unknown.',
+      durationSeconds: 18920, // ~5.3 hours
     ),
   ];
 
