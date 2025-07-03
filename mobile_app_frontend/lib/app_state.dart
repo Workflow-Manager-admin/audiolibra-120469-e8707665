@@ -5,6 +5,91 @@ import 'package:hive/hive.dart';
 import 'package:mobile_app_frontend/models/audiobook.dart';
 import 'package:path_provider/path_provider.dart';
 
+/// Dummy audiobooks for the store (at least 8+ entries with image URLs).
+final List<Audiobook> dummyStoreAudiobooks = [
+  Audiobook(
+    id: '1',
+    title: 'Moby Dick',
+    author: 'Herman Melville',
+    coverUrl: 'https://covers.openlibrary.org/b/id/7222246-L.jpg',
+    price: 12.99,
+    sampleUrl: '',
+    audioUrl: '',
+  ),
+  Audiobook(
+    id: '2',
+    title: 'Pride and Prejudice',
+    author: 'Jane Austen',
+    coverUrl: 'https://covers.openlibrary.org/b/id/8231993-L.jpg',
+    price: 11.99,
+    sampleUrl: '',
+    audioUrl: '',
+  ),
+  Audiobook(
+    id: '3',
+    title: 'The Great Gatsby',
+    author: 'F. Scott Fitzgerald',
+    coverUrl: 'https://covers.openlibrary.org/b/id/11122210-L.jpg',
+    price: 13.49,
+    sampleUrl: '',
+    audioUrl: '',
+  ),
+  Audiobook(
+    id: '4',
+    title: 'Frankenstein',
+    author: 'Mary Shelley',
+    coverUrl: 'https://covers.openlibrary.org/b/id/10354117-L.jpg',
+    price: 10.99,
+    sampleUrl: '',
+    audioUrl: '',
+  ),
+  Audiobook(
+    id: '5',
+    title: 'Dracula',
+    author: 'Bram Stoker',
+    coverUrl: 'https://covers.openlibrary.org/b/id/10414109-L.jpg',
+    price: 9.99,
+    sampleUrl: '',
+    audioUrl: '',
+  ),
+  Audiobook(
+    id: '6',
+    title: 'The Adventures of Sherlock Holmes',
+    author: 'Arthur Conan Doyle',
+    coverUrl: 'https://covers.openlibrary.org/b/id/8712161-L.jpg',
+    price: 10.99,
+    sampleUrl: '',
+    audioUrl: '',
+  ),
+  Audiobook(
+    id: '7',
+    title: 'Treasure Island',
+    author: 'Robert Louis Stevenson',
+    coverUrl: 'https://covers.openlibrary.org/b/id/6979861-L.jpg',
+    price: 8.89,
+    sampleUrl: '',
+    audioUrl: '',
+  ),
+  Audiobook(
+    id: '8',
+    title: 'The Art of War',
+    author: 'Sun Tzu',
+    coverUrl: 'https://covers.openlibrary.org/b/id/10523386-L.jpg',
+    price: 7.99,
+    sampleUrl: '',
+    audioUrl: '',
+  ),
+  Audiobook(
+    id: '9',
+    title: 'Jane Eyre',
+    author: 'Charlotte Brontë',
+    coverUrl: 'https://covers.openlibrary.org/b/id/8228691-L.jpg',
+    price: 12.49,
+    sampleUrl: '',
+    audioUrl: '',
+  ),
+];
+
 /// App state management for user library and playback
 class AppState extends ChangeNotifier {
   static const libraryBoxName = 'libraryBox_v1';
@@ -19,6 +104,12 @@ class AppState extends ChangeNotifier {
   late Box playbackBox;
 
   AppState();
+
+  /// Store audiobooks getter to mimic previous API for StoreScreen/grid version
+  List<Audiobook> get storeAudiobooks => dummyStoreAudiobooks;
+
+  /// Returns IDs of purchased audiobooks for grid variant
+  Set<String> get ownedAudiobookIds => purchasedBooks.map((b) => b.id).toSet();
 
   /// Load state from local storage
   // PUBLIC_INTERFACE
