@@ -1,8 +1,7 @@
 import 'dart:convert';
 
-/// Audiobook data model.
-/// When using demo/dummy data, ensure that audioUrl points to a valid public MP3 file,
-/// such as: https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3 for testing audio playback.
+/// Audiobook data model with duration for realistic playback UI.
+/// Ensure audioUrl points to a public MP3 for testing/demo.
 class Audiobook {
   /// Unique identifier for the audiobook.
   final String id;
@@ -10,88 +9,103 @@ class Audiobook {
   /// Title of the audiobook.
   final String title;
 
-  /// Author of the audiobook.
+  /// Author
   final String author;
 
-  /// Cover image URL of the audiobook.
+  /// Cover image URL.
   final String coverUrl;
 
   /// URL to a sample audio.
   final String sampleUrl;
 
-  /// URL to the full audiobook audio (after purchase).
-  /// Example for dummy data:
-  /// audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+  /// URL to the full (purchased) audio.
   final String audioUrl;
 
   /// Price of the audiobook.
   final double price;
 
-  /// Description of the audiobook (non-nullable).
+  /// Description of the audiobook.
   final String description;
 
+  /// Realistic total duration in seconds (required for progress bar).
+  final int durationSeconds;
+
   // PUBLIC_INTERFACE
-  /// Creates an [Audiobook].
-  /// [description] is a required, non-nullable field describing the audiobook.
   Audiobook({
     required this.id,
     required this.title,
     required this.author,
     required this.coverUrl,
-    required this.price,
     required this.sampleUrl,
     required this.audioUrl,
+    required this.price,
     required this.description,
+    required this.durationSeconds,
   });
 
   // PUBLIC_INTERFACE
-  /// Creates an [Audiobook] instance from a JSON map.
-  // PUBLIC_INTERFACE
-  /// Creates an [Audiobook] instance from a JSON map, with robust handling for missing/invalid audioUrl.
   factory Audiobook.fromJson(Map<String, dynamic> json) {
-    // Use a test/fallback MP3 for any missing/invalid audioUrl.
-    const fallbackUrl = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
-    final parsedAudioUrl = json['audioUrl'] ?? "";
-    String audioUrlToUse = parsedAudioUrl;
-    if (parsedAudioUrl.isEmpty ||
-        !(parsedAudioUrl.startsWith("http://") || parsedAudioUrl.startsWith("https://")) ||
-        !parsedAudioUrl.toLowerCase().endsWith(".mp3")) {
-      // ignore: avoid_print
-      print(
-          "[Audiobook.fromJson] WARNING: Malformed or missing audioUrl: '$parsedAudioUrl' for book '${json['title']}'. Using fallback URL.");
-      audioUrlToUse = fallbackUrl;
-    }
     return Audiobook(
       id: json['id'],
       title: json['title'],
       author: json['author'],
       coverUrl: json['coverUrl'],
-      price: (json['price'] as num).toDouble(),
       sampleUrl: json['sampleUrl'],
-      audioUrl: audioUrlToUse,
+      audioUrl: json['audioUrl'] ??
+          "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+      price: (json['price'] as num).toDouble(),
       description: json['description'],
+      durationSeconds: json['durationSeconds'] ??
+          3600, // Default to 1 hour if missing for robustness
     );
   }
 
-  // PUBLIC_INTERFACE
-  /// Returns a JSON map representing this [Audiobook].
   Map<String, dynamic> toJson() => {
         'id': id,
         'title': title,
         'author': author,
         'coverUrl': coverUrl,
-        'price': price,
         'sampleUrl': sampleUrl,
         'audioUrl': audioUrl,
+        'price': price,
         'description': description,
+        'durationSeconds': durationSeconds,
       };
 
-  static List<Audiobook> listFromJson(String jsonString) {
-    final List data = json.decode(jsonString);
-    return data.map((j) => Audiobook.fromJson(j)).toList();
-  }
-
-  static String listToJson(List<Audiobook> list) {
-    return json.encode(list.map((a) => a.toJson()).toList());
-  }
+  /// Dummy data for demonstration with explicit durations.
+  static List<Audiobook> dummyAudiobooks = [
+    Audiobook(
+      id: '1',
+      title: 'The Adventures of Sherlock Holmes',
+      author: 'Arthur Conan Doyle',
+      coverUrl: 'https://covers.openlibrary.org/b/id/8226096-L.jpg',
+      sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+      audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+      price: 9.99,
+      description: 'A tale of mystery with Sherlock Holmes.',
+      durationSeconds: 27790, // 7:43:10
+    ),
+    Audiobook(
+      id: '2',
+      title: 'Pride and Prejudice',
+      author: 'Jane Austen',
+      coverUrl: 'https://covers.openlibrary.org/b/id/8091016-L.jpg',
+      sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+      audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+      price: 8.99,
+      description: 'A romantic classic.',
+      durationSeconds: 52052, // 14:27:32
+    ),
+    Audiobook(
+      id: '3',
+      title: 'Moby Dick',
+      author: 'Herman Melville',
+      coverUrl: 'https://covers.openlibrary.org/b/id/7222246-L.jpg',
+      sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
+      audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
+      price: 10.99,
+      description: 'A classic sea adventure.',
+      durationSeconds: 79224, // 22:00:24
+    ),
+  ];
 }
