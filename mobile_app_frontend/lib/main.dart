@@ -101,10 +101,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const tabs = [
-      StoreScreen(),
-      LibraryScreen(),
-      PlayerScreen(),
+    const demoAudioTitle = 'Sample Audiobook';
+    const demoAudioUrl = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+
+    final tabs = [
+      const StoreScreen(),
+      const LibraryScreen(),
+      // Provide default values for required PlayerScreen arguments.
+      const PlayerScreen(
+        audiobookTitle: demoAudioTitle,
+        audioUrl: demoAudioUrl,
+      ),
     ];
     return Scaffold(
       body: tabs[_selectedTab],

@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 /// Audiobook data model.
+/// When using demo/dummy data, ensure that audioUrl points to a valid public MP3 file,
+/// such as: https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3 for testing audio playback.
 class Audiobook {
   /// Unique identifier for the audiobook.
   final String id;
@@ -18,6 +20,8 @@ class Audiobook {
   final String sampleUrl;
 
   /// URL to the full audiobook audio (after purchase).
+  /// Example for dummy data:
+  /// audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
   final String audioUrl;
 
   /// Price of the audiobook.

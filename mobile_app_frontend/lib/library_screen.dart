@@ -11,26 +11,28 @@ class LibraryScreen extends StatefulWidget {
 }
 
 class _LibraryScreenState extends State<LibraryScreen> {
+  static const String kOpenSourcePlaceholder =
+      "https://placehold.co/100x150?text=Audiobook";
+
   @override
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context);
     final books = appState.purchasedBooks;
 
     String getImageUrl(dynamic book) {
-      // Try known possible fields, fall back to placeholder
+      // Try known possible fields, then fall back to open source placeholder
       try {
-        final dynamic imageUrl = book.coverImageUrl;
+        final imageUrl = book.coverImageUrl ?? book.coverUrl;
         if (imageUrl is String && imageUrl.isNotEmpty) return imageUrl;
       } catch (_) {}
       try {
-        final dynamic imageUrl = book.coverUrl;
-        if (imageUrl is String && imageUrl.isNotEmpty) return imageUrl;
+        final imageUrl = book.audioUrl;
+        if (imageUrl is String &&
+            (imageUrl.endsWith('.jpg') || imageUrl.endsWith('.png'))) {
+          return imageUrl;
+        }
       } catch (_) {}
-      try {
-        final dynamic imageUrl = book.audioUrl;
-        if (imageUrl is String && (imageUrl.endsWith('.jpg') || imageUrl.endsWith('.png'))) return imageUrl;
-      } catch (_) {}
-      return 'assets/covers/placeholder.jpg';
+      return kOpenSourcePlaceholder;
     }
 
     return Padding(
@@ -67,11 +69,10 @@ class _LibraryScreenState extends State<LibraryScreen> {
                       aspectRatio: 1 / 1.4,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
-                        child: Image.asset(
+                        child: Image.network(
                           imageUrl,
                           fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) =>
-                              Container(
+                          errorBuilder: (context, error, stackTrace) => Container(
                             color: Colors.grey[200],
                             child: const Center(
                               child: Icon(Icons.book,
