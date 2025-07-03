@@ -1,0 +1,1 @@
+ /home/kavia/workspace/code-generation/audiolibra-120469-e8707665/mobile_app_frontend/.dart_tool/flutter_build/d91857a1e3c700da249d0a6ac2ceb7ae/native_assets.json: 
