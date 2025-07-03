@@ -6,7 +6,7 @@ import 'app_state.dart';
 /// The store screen for browsing audiobooks and purchasing.
 /// Displays books as a grid, with search functionality.
 class StoreScreen extends StatelessWidget {
-  const StoreScreen({Key? key}) : super(key: key);
+  const StoreScreen({super.key});
 
   // Responsive grid crossAxisCount for different devices
   int getCrossAxisCount(BuildContext context) {
@@ -53,8 +53,7 @@ class _StoreScreenBody extends StatefulWidget {
     required this.ownedIds,
     required this.appState,
     required this.crossAxisCount,
-    Key? key,
-  }) : super(key: key);
+  });
 
   @override
   State<_StoreScreenBody> createState() => _StoreScreenBodyState();
@@ -88,11 +87,11 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  if (audiobook.coverUrl != null && audiobook.coverUrl!.isNotEmpty)
+                  if (audiobook.coverUrl.isNotEmpty)
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.network(
-                        audiobook.coverUrl!,
+                        audiobook.coverUrl,
                         height: 220,
                         fit: BoxFit.cover,
                       ),
@@ -156,7 +155,7 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
                         ),
                       ),
                       child: Text(
-                        '\\$${audiobook.price?.toStringAsFixed(2) ?? 'Buy'} Buy'
+                        '\$${audiobook.price.toStringAsFixed(2)} Buy'
                       ),
                     ),
                   ElevatedButton(
@@ -221,7 +220,7 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Expanded(
-                          child: _CoverImageWidget(url: book.coverUrl ?? ''),
+                          child: _CoverImageWidget(url: book.coverUrl),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(
@@ -271,7 +270,7 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 6)),
                                         child: Text(
-                                            '\\$${book.price?.toStringAsFixed(2) ?? 'Buy'} Buy'),
+                                            '\$${book.price.toStringAsFixed(2)} Buy'),
                                       ),
                                     ),
                             ],
@@ -295,7 +294,7 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
 class _CoverImageWidget extends StatelessWidget {
   final String url;
 
-  const _CoverImageWidget({Key? key, required this.url}) : super(key: key);
+  const _CoverImageWidget({required this.url});
 
   @override
   Widget build(BuildContext context) {

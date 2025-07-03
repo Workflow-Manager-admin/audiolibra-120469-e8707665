@@ -9,6 +9,7 @@ class Audiobook {
   final String sampleUrl; // MP3 sample
   final String audioUrl;  // Full audiobook (after purchase)
   final double price;
+  final String? description; // NEW: nullable description field
 
   Audiobook({
     required this.id,
@@ -18,6 +19,7 @@ class Audiobook {
     required this.price,
     required this.sampleUrl,
     required this.audioUrl,
+    this.description, // NEW
   });
 
   // PUBLIC_INTERFACE
@@ -30,6 +32,7 @@ class Audiobook {
       price: (json['price'] as num).toDouble(),
       sampleUrl: json['sampleUrl'],
       audioUrl: json['audioUrl'],
+      description: json['description'], // NEW
     );
   }
 
@@ -42,6 +45,7 @@ class Audiobook {
         'price': price,
         'sampleUrl': sampleUrl,
         'audioUrl': audioUrl,
+        'description': description, // NEW
       };
 
   static List<Audiobook> listFromJson(String jsonString) {

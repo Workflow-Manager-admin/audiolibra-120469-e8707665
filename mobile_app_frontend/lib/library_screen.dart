@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 /// The user's audiobook library (purchased books).
 class LibraryScreen extends StatefulWidget {
-  const LibraryScreen({Key? key}) : super(key: key);
+  const LibraryScreen({super.key});
 
   @override
   State<LibraryScreen> createState() => _LibraryScreenState();

@@ -21,13 +21,14 @@ void main() async {
 
 /// The main Audiolibra application widget.
 class AudiolibraApp extends StatelessWidget {
-  const AudiolibraApp({Key? key}) : super(key: key);
+  // Use super.key for modern style
+  const AudiolibraApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = const Color(0xFFbadbf7);
-    final secondaryColor = const Color(0xFF583aee);
-    final accentColor = const Color(0xFFdcb7d9);
+    const primaryColor = Color(0xFFbadbf7);
+    const secondaryColor = Color(0xFF583aee);
+    const accentColor = Color(0xFFdcb7d9);
 
     return MaterialApp(
       title: 'Audiolibra',
@@ -35,12 +36,12 @@ class AudiolibraApp extends StatelessWidget {
         brightness: Brightness.light,
         scaffoldBackgroundColor: Colors.white,
         primaryColor: primaryColor,
-        colorScheme: ColorScheme.light(
+        colorScheme: const ColorScheme.light(
           primary: primaryColor,
           secondary: secondaryColor,
           tertiary: accentColor,
         ),
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           backgroundColor: primaryColor,
           foregroundColor: Colors.black87,
           elevation: 0,
@@ -58,14 +59,16 @@ class AudiolibraApp extends StatelessWidget {
         sliderTheme: SliderThemeData(
           activeTrackColor: secondaryColor,
           thumbColor: accentColor,
-          overlayColor: accentColor.withOpacity(0.1),
+          // withValues returns a new color with specified alpha (0.1 x 255 for ~10%)
+          overlayColor: accentColor.withAlpha((0.1 * 255).toInt()),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            backgroundColor: MaterialStatePropertyAll(secondaryColor),
-            foregroundColor: MaterialStatePropertyAll(Colors.white),
-            elevation: MaterialStatePropertyAll(0),
-            shape: MaterialStatePropertyAll(
+            // MaterialStatePropertyAll is deprecated, use WidgetStatePropertyAll if available, else fallback for version safety.
+            backgroundColor: MaterialStatePropertyAll<Color>(secondaryColor),
+            foregroundColor: MaterialStatePropertyAll<Color>(Colors.white),
+            elevation: const MaterialStatePropertyAll<double>(0),
+            shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -75,7 +78,7 @@ class AudiolibraApp extends StatelessWidget {
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: accentColor),
+            borderSide: const BorderSide(color: accentColor),
           ),
         ),
       ),
@@ -87,7 +90,7 @@ class AudiolibraApp extends StatelessWidget {
 
 /// The main home screen with bottom navigation and tab management.
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -98,10 +101,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final tabs = [
-      const StoreScreen(),
-      const LibraryScreen(),
-      const PlayerScreen(),
+    const tabs = [
+      StoreScreen(),
+      LibraryScreen(),
+      PlayerScreen(),
     ];
     return Scaffold(
       body: tabs[_selectedTab],
