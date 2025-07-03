@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 void main() {
   testWidgets('App startup and tabs present', (WidgetTester tester) async {
-    final appState = await AppState.load();
+    final appState = AppState();
     await tester.pumpWidget(
       ChangeNotifierProvider<AppState>.value(
         value: appState,

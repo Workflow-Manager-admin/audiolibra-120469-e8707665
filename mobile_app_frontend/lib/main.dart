@@ -8,9 +8,9 @@ import 'package:mobile_app_frontend/app_state.dart';
 import 'package:provider/provider.dart';
 
 // PUBLIC_INTERFACE
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  final appState = await AppState.load();
+  final appState = AppState();
   runApp(
     ChangeNotifierProvider<AppState>.value(
       value: appState,
