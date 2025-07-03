@@ -123,7 +123,7 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
                   ),
                   const SizedBox(height: 14),
                   Text(
-                    audiobook.description ?? '',
+                    audiobook.description,
                     style: const TextStyle(fontSize: 15),
                     textAlign: TextAlign.left,
                   ),
@@ -244,6 +244,14 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
                                 style: Theme.of(context).textTheme.bodySmall,
                               ),
                               const SizedBox(height: 6),
+                              Text(
+                                book.description,
+                                style: TextStyle(
+                                    color: Colors.grey[800], fontSize: 13),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              const SizedBox(height: 4),
                               owned
                                   ? const Chip(
                                       label: Text('Owned'),

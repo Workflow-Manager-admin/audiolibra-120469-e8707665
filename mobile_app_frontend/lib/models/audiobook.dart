@@ -2,15 +2,33 @@ import 'dart:convert';
 
 /// Audiobook data model.
 class Audiobook {
+  /// Unique identifier for the audiobook.
   final String id;
-  final String title;
-  final String author;
-  final String coverUrl;
-  final String sampleUrl; // MP3 sample
-  final String audioUrl;  // Full audiobook (after purchase)
-  final double price;
-  final String? description; // NEW: nullable description field
 
+  /// Title of the audiobook.
+  final String title;
+
+  /// Author of the audiobook.
+  final String author;
+
+  /// Cover image URL of the audiobook.
+  final String coverUrl;
+
+  /// URL to a sample audio.
+  final String sampleUrl;
+
+  /// URL to the full audiobook audio (after purchase).
+  final String audioUrl;
+
+  /// Price of the audiobook.
+  final double price;
+
+  /// Description of the audiobook (non-nullable).
+  final String description;
+
+  // PUBLIC_INTERFACE
+  /// Creates an [Audiobook].
+  /// [description] is a required, non-nullable field describing the audiobook.
   Audiobook({
     required this.id,
     required this.title,
@@ -19,10 +37,11 @@ class Audiobook {
     required this.price,
     required this.sampleUrl,
     required this.audioUrl,
-    this.description, // NEW
+    required this.description,
   });
 
   // PUBLIC_INTERFACE
+  /// Creates an [Audiobook] instance from a JSON map.
   factory Audiobook.fromJson(Map<String, dynamic> json) {
     return Audiobook(
       id: json['id'],
@@ -32,11 +51,12 @@ class Audiobook {
       price: (json['price'] as num).toDouble(),
       sampleUrl: json['sampleUrl'],
       audioUrl: json['audioUrl'],
-      description: json['description'], // NEW
+      description: json['description'],
     );
   }
 
   // PUBLIC_INTERFACE
+  /// Returns a JSON map representing this [Audiobook].
   Map<String, dynamic> toJson() => {
         'id': id,
         'title': title,
@@ -45,7 +65,7 @@ class Audiobook {
         'price': price,
         'sampleUrl': sampleUrl,
         'audioUrl': audioUrl,
-        'description': description, // NEW
+        'description': description,
       };
 
   static List<Audiobook> listFromJson(String jsonString) {

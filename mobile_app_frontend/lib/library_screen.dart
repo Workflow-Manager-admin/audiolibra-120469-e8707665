@@ -60,7 +60,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                 separatorBuilder: (_, __) => const Divider(height: 24),
                 itemBuilder: (_, idx) {
                   final book = books[idx];
-                  final String imageUrl = getImageUrl(book) ?? 'assets/covers/placeholder.jpg';
+                  final String imageUrl = getImageUrl(book);
 
                   return ListTile(
                     leading: AspectRatio(

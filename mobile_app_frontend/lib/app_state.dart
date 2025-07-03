@@ -5,7 +5,8 @@ import 'package:hive/hive.dart';
 import 'package:mobile_app_frontend/models/audiobook.dart';
 import 'package:path_provider/path_provider.dart';
 
-/// Dummy audiobooks for the store (at least 8+ entries with image URLs).
+/// Dummy audiobooks for the store (at least 8+ entries with image URLs),
+/// Each with a description.
 final List<Audiobook> dummyStoreAudiobooks = [
   Audiobook(
     id: '1',
@@ -15,6 +16,7 @@ final List<Audiobook> dummyStoreAudiobooks = [
     price: 12.99,
     sampleUrl: '',
     audioUrl: '',
+    description: 'An epic tale of obsession, vengeance, and the struggle against nature, as Captain Ahab hunts the white whale.',
   ),
   Audiobook(
     id: '2',
@@ -24,6 +26,7 @@ final List<Audiobook> dummyStoreAudiobooks = [
     price: 11.99,
     sampleUrl: '',
     audioUrl: '',
+    description: 'A witty commentary on social status and marriage among the British gentry of the early 19th century.',
   ),
   Audiobook(
     id: '3',
@@ -33,6 +36,7 @@ final List<Audiobook> dummyStoreAudiobooks = [
     price: 13.49,
     sampleUrl: '',
     audioUrl: '',
+    description: 'A classic novel set in the Roaring Twenties exploring decadence, idealism, and the American dream.',
   ),
   Audiobook(
     id: '4',
@@ -42,6 +46,7 @@ final List<Audiobook> dummyStoreAudiobooks = [
     price: 10.99,
     sampleUrl: '',
     audioUrl: '',
+    description: 'A story of scientific hubris and unintended consequences, as Victor Frankenstein creates a living monster.',
   ),
   Audiobook(
     id: '5',
@@ -51,6 +56,7 @@ final List<Audiobook> dummyStoreAudiobooks = [
     price: 9.99,
     sampleUrl: '',
     audioUrl: '',
+    description: 'The legendary tale of Count Dracula and his dark quest for blood, told through journal entries and letters.',
   ),
   Audiobook(
     id: '6',
@@ -60,6 +66,7 @@ final List<Audiobook> dummyStoreAudiobooks = [
     price: 10.99,
     sampleUrl: '',
     audioUrl: '',
+    description: 'A collection of classic Sherlock Holmes mysteries, blurring logic, deduction, and excitement.',
   ),
   Audiobook(
     id: '7',
@@ -69,6 +76,7 @@ final List<Audiobook> dummyStoreAudiobooks = [
     price: 8.89,
     sampleUrl: '',
     audioUrl: '',
+    description: 'A tale of pirates, treasure maps, and adventure on the high seas for young Jim Hawkins.',
   ),
   Audiobook(
     id: '8',
@@ -78,6 +86,7 @@ final List<Audiobook> dummyStoreAudiobooks = [
     price: 7.99,
     sampleUrl: '',
     audioUrl: '',
+    description: 'An ancient Chinese military treatise on strategy, tactics, and leadership—still influential today.',
   ),
   Audiobook(
     id: '9',
@@ -87,6 +96,7 @@ final List<Audiobook> dummyStoreAudiobooks = [
     price: 12.49,
     sampleUrl: '',
     audioUrl: '',
+    description: 'A deeply emotional journey of growth, independence, and love against the odds for orphan Jane.',
   ),
 ];
 
