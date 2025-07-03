@@ -6,6 +6,8 @@ plugins {
 }
 
 android {
+    // Specify NDK version required for just_audio, audio_session, and path_provider_android plugins
+    ndkVersion = "27.0.12077973"
     namespace = "com.example.mobile_app_frontend"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
