@@ -139,14 +139,14 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
                   if (!owned)
                     ElevatedButton(
                       onPressed: () async {
-                        final purchased = await _simulateStripePurchase(
-                            context, audiobook);
-                        if (purchased && context.mounted) {
-                          widget.appState.addToLibrary(audiobook);
-                          Navigator.of(dialogContext).pop();
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                            content: Text("Purchase succeeded! Book added to your library.")));
-                        }
+                        // Immediate mock purchase: add to library and show snackbar
+                        widget.appState.addToLibrary(audiobook);
+                        Navigator.of(dialogContext).pop();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Purchase succeeded! Book added to your library."),
+                          ),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
@@ -156,7 +156,7 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
                         ),
                       ),
                       child: Text(
-                        '\$${audiobook.price?.toStringAsFixed(2) ?? 'Buy'} Buy'
+                        '\\$${audiobook.price?.toStringAsFixed(2) ?? 'Buy'} Buy'
                       ),
                     ),
                   ElevatedButton(
@@ -257,22 +257,21 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
                                       width: double.infinity,
                                       child: ElevatedButton(
                                         onPressed: () async {
-                                          final purchased =
-                                              await _simulateStripePurchase(
-                                                  context, book);
-                                          if (purchased && context.mounted) {
-                                            widget.appState.addToLibrary(book);
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(const SnackBar(
-                                                    content: Text(
-                                                        "Purchase succeeded! Book added to your library.")));
-                                          }
+                                          // Immediate mock purchase: add to library and show snackbar
+                                          widget.appState.addToLibrary(book);
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            const SnackBar(
+                                              content: Text(
+                                                  "Purchase succeeded! Book added to your library."),
+                                            ),
+                                          );
                                         },
                                         style: ElevatedButton.styleFrom(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 6)),
                                         child: Text(
-                                            '\$${book.price?.toStringAsFixed(2) ?? 'Buy'} Buy'),
+                                            '\\$${book.price?.toStringAsFixed(2) ?? 'Buy'} Buy'),
                                       ),
                                     ),
                             ],
@@ -289,28 +288,7 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
       ),
     );
   }
-
-  /// Simulates a Stripe payment flow (demo).
-  Future<bool> _simulateStripePurchase(BuildContext context, Audiobook book) async {
-    // PUBLIC_INTERFACE: Replace with Stripe API integration.
-    return await showDialog(
-            context: context,
-            builder: (ctx) => AlertDialog(
-                  title: const Text('Demo Purchase'),
-                  content: Text('Pay \$${book.price?.toStringAsFixed(2) ?? ''} (Stripe integration placeholder)'),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(ctx, false),
-                      child: const Text('Cancel'),
-                    ),
-                    ElevatedButton(
-                      onPressed: () => Navigator.pop(ctx, true),
-                      child: const Text('Purchase'),
-                    ),
-                  ],
-                )) ??
-        false;
-  }
+  // The Stripe/dialog mock is fully removed.
 }
 
 /// Cover image widget with loading/error handling.
