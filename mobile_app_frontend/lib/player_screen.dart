@@ -56,6 +56,23 @@ class _PlayerScreenState extends State<PlayerScreen> {
     final url = _appState!.purchasedBooks.any((b) => b.id == _currentBook!.id)
         ? _currentBook!.audioUrl
         : _currentBook!.sampleUrl;
+
+    // Diagnostic: print and validate the URL to debug loading issues.
+    debugPrint('Attempting to load audio URL: $url');
+    if (url.isEmpty ||
+        !(url.startsWith('http://') || url.startsWith('https://'))) {
+      // Show an error message immediately for invalid URL.
+      if (mounted) {
+        setState(() {
+          _isLoaded = false;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Audio URL is invalid: $url')),
+        );
+      }
+      return;
+    }
+
     try {
       await _audioPlayer.setUrl(url);
       final duration = _audioPlayer.duration;
