@@ -157,6 +157,9 @@ class AppState extends ChangeNotifier {
   /// Add a purchased audiobook to the library, save to local storage
   // PUBLIC_INTERFACE
   void addToLibrary(Audiobook book) {
+    // Debug logging for troubleshooting purchase data issues
+    // ignore: avoid_print
+    print("[AppState.addToLibrary] Adding book: id=${book.id}, title=${book.title}, coverUrl=${book.coverUrl}, audioUrl=${book.audioUrl}");
     if (!purchasedBooks.any((b) => b.id == book.id)) {
       purchasedBooks.add(book);
       libraryBox.put('purchased', Audiobook.listToJson(purchasedBooks));

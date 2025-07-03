@@ -43,7 +43,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
     }
   }
 
-  // Initialize player and log the URL and any errors
+  // Initialize player and log the URL and any errors - also validate URL before attempting to play.
   Future<void> _initializePlayer(String audioUrl) async {
     setState(() {
       _isLoading = true;
@@ -51,8 +51,22 @@ class _PlayerScreenState extends State<PlayerScreen> {
     });
     try {
       developer.log("[PlayerScreen] Attempting setUrl: '$audioUrl'", name: "PlayerScreen");
+      // Defensive: Only allow nonempty, HTTP(S) URLs
       if (audioUrl.isEmpty) {
         developer.log("[PlayerScreen] ERROR: Audio URL is empty.", name: "PlayerScreen");
+        setState(() {
+          _error = "Error: Audio URL is empty.";
+          _isLoading = false;
+        });
+        return;
+      }
+      if (!(audioUrl.startsWith('http://') || audioUrl.startsWith('https://'))) {
+        developer.log("[PlayerScreen] ERROR: Audio URL must be an http(s) link. Received: $audioUrl", name: "PlayerScreen");
+        setState(() {
+          _error = "Error: Invalid audio URL.";
+          _isLoading = false;
+        });
+        return;
       }
       await _player.setUrl(audioUrl);
       _duration = _player.duration ?? Duration.zero;

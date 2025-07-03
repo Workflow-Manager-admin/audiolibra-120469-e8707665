@@ -19,18 +19,12 @@ class _LibraryScreenState extends State<LibraryScreen> {
     final appState = Provider.of<AppState>(context);
     final books = appState.purchasedBooks;
 
+    /// Always use the Audiobook's coverUrl for the library image, or placeholder if missing.
     String getImageUrl(dynamic book) {
-      // Try known possible fields, then fall back to open source placeholder
       try {
-        final imageUrl = book.coverImageUrl ?? book.coverUrl;
+        // book is guaranteed to be an Audiobook (see AppState logic)
+        final imageUrl = book.coverUrl;
         if (imageUrl is String && imageUrl.isNotEmpty) return imageUrl;
-      } catch (_) {}
-      try {
-        final imageUrl = book.audioUrl;
-        if (imageUrl is String &&
-            (imageUrl.endsWith('.jpg') || imageUrl.endsWith('.png'))) {
-          return imageUrl;
-        }
       } catch (_) {}
       return kOpenSourcePlaceholder;
     }
