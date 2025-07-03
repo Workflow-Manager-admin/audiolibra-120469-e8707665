@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /home/kavia/workspace/code-generation/audiolibra-120469-e8707665/mobile_app_frontend
+flutter analyze
+
