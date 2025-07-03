@@ -46,7 +46,21 @@ class Audiobook {
 
   // PUBLIC_INTERFACE
   /// Creates an [Audiobook] instance from a JSON map.
+  // PUBLIC_INTERFACE
+  /// Creates an [Audiobook] instance from a JSON map, with robust handling for missing/invalid audioUrl.
   factory Audiobook.fromJson(Map<String, dynamic> json) {
+    // Use a test/fallback MP3 for any missing/invalid audioUrl.
+    const fallbackUrl = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+    final parsedAudioUrl = json['audioUrl'] ?? "";
+    String audioUrlToUse = parsedAudioUrl;
+    if (parsedAudioUrl.isEmpty ||
+        !(parsedAudioUrl.startsWith("http://") || parsedAudioUrl.startsWith("https://")) ||
+        !parsedAudioUrl.toLowerCase().endsWith(".mp3")) {
+      // ignore: avoid_print
+      print(
+          "[Audiobook.fromJson] WARNING: Malformed or missing audioUrl: '$parsedAudioUrl' for book '${json['title']}'. Using fallback URL.");
+      audioUrlToUse = fallbackUrl;
+    }
     return Audiobook(
       id: json['id'],
       title: json['title'],
@@ -54,7 +68,7 @@ class Audiobook {
       coverUrl: json['coverUrl'],
       price: (json['price'] as num).toDouble(),
       sampleUrl: json['sampleUrl'],
-      audioUrl: json['audioUrl'],
+      audioUrl: audioUrlToUse,
       description: json['description'],
     );
   }

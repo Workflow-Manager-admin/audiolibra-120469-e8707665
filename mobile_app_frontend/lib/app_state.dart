@@ -160,6 +160,12 @@ class AppState extends ChangeNotifier {
     // Debug logging for troubleshooting purchase data issues
     // ignore: avoid_print
     print("[AppState.addToLibrary] Adding book: id=${book.id}, title=${book.title}, coverUrl=${book.coverUrl}, audioUrl=${book.audioUrl}");
+    if (book.audioUrl.isEmpty ||
+        !(book.audioUrl.startsWith('http://') || book.audioUrl.startsWith('https://')) ||
+        !book.audioUrl.toLowerCase().endsWith('.mp3')) {
+      // ignore: avoid_print
+      print("[AppState.addToLibrary] WARNING: Book added to library with malformed/empty audioUrl: '${book.audioUrl}'");
+    }
     if (!purchasedBooks.any((b) => b.id == book.id)) {
       purchasedBooks.add(book);
       libraryBox.put('purchased', Audiobook.listToJson(purchasedBooks));
@@ -170,6 +176,12 @@ class AppState extends ChangeNotifier {
   /// Set and persist the current playing audiobook
   // PUBLIC_INTERFACE
   void setCurrentBook(Audiobook book, [double pos = 0]) {
+    if (book.audioUrl.isEmpty ||
+        !(book.audioUrl.startsWith('http://') || book.audioUrl.startsWith('https://')) ||
+        !book.audioUrl.toLowerCase().endsWith('.mp3')) {
+      // ignore: avoid_print
+      print("[AppState.setCurrentBook] WARNING: Setting current book with bad audioUrl: '${book.audioUrl}' (${book.title})");
+    }
     currentBook = book;
     currentPosition = pos;
     playbackBox.put('currentBook', json.encode(book.toJson()));
