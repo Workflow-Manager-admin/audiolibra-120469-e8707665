@@ -46,10 +46,10 @@ class AudiolibraApp extends StatelessWidget {
           foregroundColor: Colors.black87,
           elevation: 0,
         ),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Colors.white,
           selectedItemColor: secondaryColor,
-          unselectedItemColor: Colors.grey[600],
+          unselectedItemColor: Color(0xFF757575), // Colors.grey[600]
           showSelectedLabels: false,
           showUnselectedLabels: false,
         ),
@@ -64,11 +64,11 @@ class AudiolibraApp extends StatelessWidget {
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            // MaterialStatePropertyAll is deprecated, use WidgetStatePropertyAll if available, else fallback for version safety.
-            backgroundColor: MaterialStatePropertyAll<Color>(secondaryColor),
-            foregroundColor: MaterialStatePropertyAll<Color>(Colors.white),
-            elevation: const MaterialStatePropertyAll<double>(0),
-            shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
+            // Use WidgetStatePropertyAll (Flutter >= 3.19.0-0.3.pre) - here we optimistically use it.
+            backgroundColor: const WidgetStatePropertyAll<Color>(secondaryColor),
+            foregroundColor: const WidgetStatePropertyAll<Color>(Colors.white),
+            elevation: const WidgetStatePropertyAll<double>(0),
+            shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),

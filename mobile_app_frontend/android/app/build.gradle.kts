@@ -6,6 +6,8 @@ plugins {
 }
 
 android {
+    // Added to satisfy build requirement for plugins needing a specific NDK version
+    ndkVersion = "27.0.12077973"
     // Specify NDK version for build stability and compatibility
     ndkVersion = "27.0.12077973"
     // Specify NDK version required for just_audio, audio_session, and path_provider_android plugins
