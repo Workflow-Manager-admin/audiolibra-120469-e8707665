@@ -27,7 +27,6 @@ class StoreScreen extends StatelessWidget {
     final List<Audiobook> storeBooks = appState.storeAudiobooks;
     final Set<String> ownedIds = appState.ownedAudiobookIds;
 
-    // Search filter controller in upper area
     return Scaffold(
       appBar: AppBar(
         title: const Text('Audiobook Store'),
@@ -73,6 +72,113 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
         .toList();
   }
 
+  // PUBLIC_INTERFACE
+  void _showAudiobookDialog(BuildContext context, Audiobook audiobook, bool owned) {
+    showDialog(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  if (audiobook.coverUrl != null && audiobook.coverUrl!.isNotEmpty)
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        audiobook.coverUrl!,
+                        height: 220,
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                  else
+                    Container(
+                      height: 150,
+                      color: Colors.grey.shade200,
+                      child: const Icon(Icons.library_music, size: 70),
+                    ),
+                  const SizedBox(height: 20),
+                  Text(
+                    audiobook.title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'By ${audiobook.author}',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      color: Colors.deepPurple,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 14),
+                  Text(
+                    audiobook.description ?? '',
+                    style: const TextStyle(fontSize: 15),
+                    textAlign: TextAlign.left,
+                  ),
+                  const SizedBox(height: 16),
+                  if (owned)
+                    const Chip(
+                      label: Text('Owned'),
+                      backgroundColor: Color(0xFFD9F3DB),
+                      labelStyle: TextStyle(
+                        color: Color(0xFF387D47), fontWeight: FontWeight.bold),
+                    ),
+                  if (!owned)
+                    ElevatedButton(
+                      onPressed: () async {
+                        final purchased = await _simulateStripePurchase(
+                            context, audiobook);
+                        if (purchased && context.mounted) {
+                          widget.appState.addToLibrary(audiobook);
+                          Navigator.of(dialogContext).pop();
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                            content: Text("Purchase succeeded! Book added to your library.")));
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: Text(
+                        '\$${audiobook.price?.toStringAsFixed(2) ?? 'Buy'} Buy'
+                      ),
+                    ),
+                  ElevatedButton(
+                    onPressed: () => Navigator.of(dialogContext).pop(),
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      backgroundColor: Colors.grey.shade200,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: const Text('Close'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -108,7 +214,9 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
                   elevation: 4,
                   clipBehavior: Clip.antiAlias,
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      _showAudiobookDialog(context, book, owned);
+                    },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
