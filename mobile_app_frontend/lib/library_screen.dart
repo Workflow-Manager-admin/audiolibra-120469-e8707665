@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app_frontend/app_state.dart';
-import 'package:mobile_app_frontend/models/audiobook.dart';
+import 'package:provider/provider.dart';
 
 /// The user's audiobook library (purchased books).
 class LibraryScreen extends StatefulWidget {
-  final AppState appState;
-  const LibraryScreen({required this.appState, super.key});
+  const LibraryScreen({Key? key}) : super(key: key);
 
   @override
   State<LibraryScreen> createState() => _LibraryScreenState();
@@ -14,7 +13,8 @@ class LibraryScreen extends StatefulWidget {
 class _LibraryScreenState extends State<LibraryScreen> {
   @override
   Widget build(BuildContext context) {
-    final books = widget.appState.purchasedBooks;
+    final appState = Provider.of<AppState>(context);
+    final books = appState.purchasedBooks;
     return Padding(
       padding: const EdgeInsets.only(top: 42, left: 16, right: 16),
       child: Column(
@@ -57,8 +57,8 @@ class _LibraryScreenState extends State<LibraryScreen> {
                     subtitle: Text(book.author),
                     trailing: Icon(Icons.play_circle, color: Theme.of(context).colorScheme.secondary),
                     onTap: () {
-                      widget.appState.setCurrentBook(book, 
-                        widget.appState.playbackPositions[book.id] ?? 0
+                      appState.setCurrentBook(book, 
+                        appState.playbackPositions[book.id] ?? 0
                       );
                       // Optionally switch to Player tab.
                       ScaffoldMessenger.of(context).showSnackBar(

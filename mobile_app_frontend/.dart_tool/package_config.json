@@ -164,6 +164,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "nested",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/nested-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "path",
       "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/path-1.9.1",
       "packageUri": "lib/",
@@ -216,6 +222,12 @@
       "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8",
       "packageUri": "lib/",
       "languageVersion": "3.0"
+    },
+    {
+      "name": "provider",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/provider-6.1.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "rxdart",
@@ -320,7 +332,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2025-07-03T19:35:02.670788Z",
+  "generated": "2025-07-03T19:47:28.244523Z",
   "generator": "pub",
   "generatorVersion": "3.7.0",
   "flutterRoot": "file:///opt/flutter",

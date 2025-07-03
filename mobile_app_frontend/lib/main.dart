@@ -2,21 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app_frontend/store_screen.dart';
 import 'package:mobile_app_frontend/library_screen.dart';
 import 'package:mobile_app_frontend/player_screen.dart';
-import 'package:mobile_app_frontend/models/audiobook.dart';
+
 import 'package:mobile_app_frontend/app_state.dart';
+// Provider is required for state management
+import 'package:provider/provider.dart';
 
 // PUBLIC_INTERFACE
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final appState = await AppState.load();
-  runApp(AudiolibraApp(appState: appState));
+  runApp(
+    ChangeNotifierProvider<AppState>.value(
+      value: appState,
+      child: const AudiolibraApp(),
+    ),
+  );
 }
 
 /// The main Audiolibra application widget.
 class AudiolibraApp extends StatelessWidget {
-  final AppState appState;
-
-  const AudiolibraApp({required this.appState, Key? key}) : super(key: key);
+  const AudiolibraApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +79,7 @@ class AudiolibraApp extends StatelessWidget {
           ),
         ),
       ),
-      home: HomeScreen(appState: appState),
+      home: const HomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -82,8 +87,7 @@ class AudiolibraApp extends StatelessWidget {
 
 /// The main home screen with bottom navigation and tab management.
 class HomeScreen extends StatefulWidget {
-  final AppState appState;
-  const HomeScreen({required this.appState, super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -95,9 +99,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final tabs = [
-      StoreScreen(appState: widget.appState),
-      LibraryScreen(appState: widget.appState),
-      PlayerScreen(appState: widget.appState),
+      const StoreScreen(),
+      const LibraryScreen(),
+      const PlayerScreen(),
     ];
     return Scaffold(
       body: tabs[_selectedTab],

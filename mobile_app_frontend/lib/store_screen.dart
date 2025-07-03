@@ -127,14 +127,14 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
                                 overflow: TextOverflow.ellipsis,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .subtitle1
+                                    .titleMedium
                                     ?.copyWith(fontWeight: FontWeight.w600),
                               ),
                               Text(
                                 book.author,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context).textTheme.caption,
+                                style: Theme.of(context).textTheme.bodySmall,
                               ),
                               const SizedBox(height: 6),
                               owned
