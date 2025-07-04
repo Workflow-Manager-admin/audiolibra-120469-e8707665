@@ -100,8 +100,8 @@ class Audiobook {
       id: '3',
       title: 'Moby Dick',
       author: 'Herman Melville',
-      // 1851 first edition title page, PD/Wikimedia Commons
-      coverUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/79/Moby-Dick_FE_title_page.jpg',
+      // Cover from Open Library, PD
+      coverUrl: 'https://covers.openlibrary.org/b/id/7222246-L.jpg',
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
       price: 10.99,
