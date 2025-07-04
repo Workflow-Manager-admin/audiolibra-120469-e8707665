@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 /// Audiobook data model with duration for realistic playback UI.
 /// Ensure audioUrl points to a public MP3 for testing/demo.
 class Audiobook {
@@ -78,7 +76,8 @@ class Audiobook {
       id: '1',
       title: 'The Adventures of Sherlock Holmes',
       author: 'Arthur Conan Doyle',
-      coverUrl: 'https://covers.openlibrary.org/b/id/8226096-L.jpg',
+      // Public domain cover from Wikimedia Commons
+      coverUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Adventures_of_Sherlock_Holmes_HC_1892.jpg',
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       price: 9.99,
@@ -89,7 +88,8 @@ class Audiobook {
       id: '2',
       title: 'Pride and Prejudice',
       author: 'Jane Austen',
-      coverUrl: 'https://covers.openlibrary.org/b/id/8091016-L.jpg',
+      // First edition cover page, PD/Wikimedia Commons
+      coverUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/1e/Title_page_Pride_and_Prejudice,_1813_(first_edition,_Volume_I).jpg',
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
       price: 8.99,
@@ -100,7 +100,8 @@ class Audiobook {
       id: '3',
       title: 'Moby Dick',
       author: 'Herman Melville',
-      coverUrl: 'https://covers.openlibrary.org/b/id/7222246-L.jpg',
+      // 1851 first edition title page, PD/Wikimedia Commons
+      coverUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/79/Moby-Dick_FE_title_page.jpg',
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
       price: 10.99,
