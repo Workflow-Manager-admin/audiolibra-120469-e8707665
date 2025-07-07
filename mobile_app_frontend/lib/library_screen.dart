@@ -1,114 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app_frontend/app_state.dart';
-import 'package:provider/provider.dart';
+import 'models/audiobook.dart';
+import 'player_screen.dart';
 
-/// The user's audiobook library (purchased books).
-class LibraryScreen extends StatefulWidget {
-  const LibraryScreen({super.key});
+/// The user's audiobook library, with navigation to chapter-based player.
+class LibraryScreen extends StatelessWidget {
+  final List<Audiobook>? myLibrary;
 
-  @override
-  State<LibraryScreen> createState() => _LibraryScreenState();
-}
+  // PUBLIC_INTERFACE
+  const LibraryScreen({
+    Key? key,
+    this.myLibrary,
+  }) : super(key: key);
 
-class _LibraryScreenState extends State<LibraryScreen> {
-  static const String kOpenSourcePlaceholder =
-      "https://placehold.co/100x150?text=Audiobook";
+  // Demo/fallback data for local demo/testing.
+  static List<Audiobook> sampleLibrary = [
+    Audiobook(
+      id: '1',
+      title: "Moby Dick",
+      author: "Herman Melville",
+      coverUrl: "",
+      tags: ["classic", "adventure"],
+      description: "A classic novel about the adventures aboard the Pequod.",
+      chapters: [
+        AudiobookChapter(title: "Chapter 1: Loomings", mp4PathOrUrl: "assets/moby_ch1.mp4"),
+        AudiobookChapter(title: "Chapter 2: The Carpet-Bag", mp4PathOrUrl: "assets/moby_ch2.mp4"),
+        AudiobookChapter(title: "Chapter 3: The Spouter-Inn", mp4PathOrUrl: "assets/moby_ch3.mp4"),
+      ],
+      coverAssetPath: "assets/moby_dick_cover.jpg",
+    ),
+  ];
+
+  // PUBLIC_INTERFACE
+  void _openBook(BuildContext context, Audiobook book) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => PlayerScreen(audiobook: book),
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
-    final appState = Provider.of<AppState>(context);
-    final books = appState.purchasedBooks;
-
-    /// Always use the Audiobook's coverUrl for the library image, or placeholder if missing.
-    String getImageUrl(dynamic book) {
-      try {
-        // book is guaranteed to be an Audiobook (see AppState logic)
-        final imageUrl = book.coverUrl;
-        if (imageUrl is String && imageUrl.isNotEmpty) return imageUrl;
-      } catch (_) {}
-      return kOpenSourcePlaceholder;
-    }
-
-    return Padding(
-      padding: const EdgeInsets.only(top: 42, left: 16, right: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Your Library',
-            style: Theme.of(context).textTheme.headlineSmall,
-          ),
-          const SizedBox(height: 16),
-          if (books.isEmpty)
-            Expanded(
-              child: Center(
-                child: Text(
-                  "No audiobooks purchased yet.\nGo to the Store to find your next listen!",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.grey[600]),
-                ),
-              ),
-            )
-          else
-            Expanded(
-              child: ListView.separated(
-                itemCount: books.length,
-                separatorBuilder: (_, __) => const Divider(height: 24),
-                itemBuilder: (_, idx) {
-                  final book = books[idx];
-                  final String imageUrl = getImageUrl(book);
-
-                  return ListTile(
-                    leading: AspectRatio(
-                      aspectRatio: 1 / 1.4,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                          imageUrl,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) => Container(
-                            color: Colors.grey[200],
-                            child: const Center(
-                              child: Icon(Icons.book,
-                                  size: 54, color: Colors.grey),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    title: Text(book.title,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 16)),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(book.author),
-                        const SizedBox(height: 3),
-                        Text(
-                          book.description,
-                          style: TextStyle(
-                              fontSize: 12, color: Colors.grey[600]),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                    trailing: Icon(Icons.play_circle,
-                        color: Theme.of(context).colorScheme.secondary),
-                    onTap: () {
-                      appState.setCurrentBook(
-                          book, appState.playbackPositions[book.id] ?? 0);
-                      // Optionally switch to Player tab.
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content: Text('Ready to play! Go to Player tab.')));
-                    },
-                  );
-                },
-              ),
+    final List<Audiobook> library = myLibrary ?? sampleLibrary;
+    return ListView.builder(
+      itemCount: library.length,
+      itemBuilder: (context, index) {
+        final book = library[index];
+        return ListTile(
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(4.0),
+            child: Image.asset(
+              book.coverAssetPath,
+              height: 48,
+              width: 48,
+              fit: BoxFit.cover,
             ),
-        ],
-      ),
+          ),
+          title: Text(book.title),
+          subtitle: Text(book.author),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: () => _openBook(context, book),
+        );
+      },
     );
   }
 }

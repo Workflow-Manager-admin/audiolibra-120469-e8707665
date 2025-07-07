@@ -1,267 +1,212 @@
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
-import 'dart:developer' as developer;
-import 'package:provider/provider.dart';
-import 'app_state.dart';
 import 'models/audiobook.dart';
 
-/// PlayerScreen - Audio playback screen for the audiobook app.
-/// Shows realistic progress bar (data-driven duration) and time labels.
+/// A player screen providing chapter-based navigation and playback controls for an audiobook.
+/// Integrates with Audiobook models, presenting chapters as selectable list-items,
+/// and providing play/pause/next/previous controls optimized for mobile.
+///
+/// This widget should be pushed after a purchase and when opening a book from the library.
+// PUBLIC_INTERFACE
 class PlayerScreen extends StatefulWidget {
-  const PlayerScreen({super.key});
+  final Audiobook audiobook;
+  final int initialChapter;
+  final bool autoPlay;
+
+  /// Creates a chapter-based audiobook player screen.
+  ///
+  /// [audiobook]: The currently selected Audiobook model.
+  /// [initialChapter]: Which chapter (zero-based) to start at.
+  /// [autoPlay]: If true, playback auto-starts when the player opens.
+  const PlayerScreen({
+    super.key,
+    required this.audiobook,
+    this.initialChapter = 0,
+    this.autoPlay = false,
+  });
 
   @override
   State<PlayerScreen> createState() => _PlayerScreenState();
 }
 
 class _PlayerScreenState extends State<PlayerScreen> {
-  late AudioPlayer _player;
-  bool _isPlaying = false;
-  Duration _audioDuration = Duration.zero;
-  Duration _position = Duration.zero;
-  bool _isLoading = true;
-  String? _error;
-
-  Audiobook? _currentBook;
+  // Simulate playback states
+  bool isPlaying = false;
+  int currentChapter = 0;
 
   @override
   void initState() {
     super.initState();
-    _player = AudioPlayer();
-    // Delay player initialization until currentBook is set in didChangeDependencies
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final appState = Provider.of<AppState>(context);
-    if (appState.currentBook != null && _currentBook != appState.currentBook) {
-      _currentBook = appState.currentBook;
-      _initializePlayer(_currentBook!.audioUrl);
-    }
-  }
-
-  Future<void> _initializePlayer(String audioUrl) async {
-    setState(() {
-      _isLoading = true;
-      _error = null;
-      _position = Duration.zero;
-      _audioDuration = Duration.zero;
-    });
-    try {
-      developer.log("[PlayerScreen] setUrl: '$audioUrl'", name: "PlayerScreen");
-      if (audioUrl.isEmpty) {
-        setState(() {
-          _error = "Error: Audio URL is empty.";
-          _isLoading = false;
-        });
-        return;
-      }
-      if (!(audioUrl.startsWith('http://') || audioUrl.startsWith('https://'))) {
-        setState(() {
-          _error = "Error: Invalid audio URL.";
-          _isLoading = false;
-        });
-        return;
-      }
-      await _player.setUrl(audioUrl);
-      _audioDuration = _player.duration ?? Duration.zero;
-      _player.positionStream.listen((position) {
-        setState(() {
-          _position = position;
-        });
-      });
-      setState(() {
-        _isLoading = false;
-      });
-      developer.log("[PlayerScreen] Audio loaded successfully.", name: "PlayerScreen");
-    } catch (e) {
-      developer.log("[PlayerScreen] Source error: $e", name: "PlayerScreen", error: e);
-      setState(() {
-        _error = 'Source error: $e';
-        _isLoading = false;
-      });
-    }
-  }
-
-  @override
-  void dispose() {
-    _player.dispose();
-    super.dispose();
+    currentChapter = widget.initialChapter;
+    isPlaying = widget.autoPlay;
   }
 
   // PUBLIC_INTERFACE
-  String _formatDuration(Duration d) {
-    final h = d.inHours.toString().padLeft(2, '0');
-    final m = (d.inMinutes % 60).toString().padLeft(2, '0');
-    final s = (d.inSeconds % 60).toString().padLeft(2, '0');
-    return "$h:$m:$s";
+  void play() {
+    setState(() {
+      isPlaying = true;
+    });
+    // TODO: Integrate with audio playback service or player backend
   }
 
-  // Returns the total duration to be shown for this audiobook:
-  // Prefer model's durationSeconds; fallback to detected file duration if model not set.
-  int? _getAudiobookDurationSeconds() {
-    if (_currentBook?.durationSeconds != null &&
-        _currentBook!.durationSeconds > 0) {
-      return _currentBook!.durationSeconds;
-    }
-    if (_audioDuration.inSeconds > 0) {
-      return _audioDuration.inSeconds;
-    }
-    return null;
+  // PUBLIC_INTERFACE
+  void pause() {
+    setState(() {
+      isPlaying = false;
+    });
+    // TODO: Integrate with audio playback service or player backend
   }
 
-  Widget _buildPlayer() {
-    if (_isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-    if (_error != null) {
-      return Center(child: Text(_error!, style: const TextStyle(color: Colors.red)));
-    }
-    if (_currentBook == null) {
-      return const Center(child: Text("No audiobook selected.", style: TextStyle(fontSize: 18)));
-    }
+  // PUBLIC_INTERFACE
+  void goToChapter(int index) {
+    setState(() {
+      currentChapter = index;
+      isPlaying = true;
+    });
+    // TODO: Integrate with audio play logic (seek to chapter and play)
+  }
 
-    final int? totalSeconds = _getAudiobookDurationSeconds();
-    final Duration totalDuration =
-        totalSeconds != null ? Duration(seconds: totalSeconds) : Duration.zero;
-
-    if (totalSeconds == null || totalSeconds <= 0) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (_currentBook != null) ...[
-              Text(
-                _currentBook!.title,
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              Text(_currentBook!.author, style: const TextStyle(fontSize: 14, color: Colors.grey)),
-              const SizedBox(height: 30),
-            ],
-            const Text(
-              'Duration unknown. Unable to display progress bar.',
-              style: TextStyle(color: Colors.red),
-            ),
-          ],
-        ),
-      );
+  // PUBLIC_INTERFACE
+  void nextChapter() {
+    if (currentChapter < widget.audiobook.chapters.length - 1) {
+      goToChapter(currentChapter + 1);
     }
+  }
 
-    final double sliderValue =
-        _position.inSeconds.clamp(0, totalSeconds).toDouble();
-
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        // Cover image and title
-        if (_currentBook!.coverUrl.isNotEmpty)
-          Container(
-            height: 180,
-            margin: const EdgeInsets.only(bottom: 16),
-            decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black26,
-                  blurRadius: 8,
-                  offset: Offset(0, 4),
-                )
-              ],
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12.0),
-              child: Image.network(
-                _currentBook!.coverUrl,
-                fit: BoxFit.cover,
-                width: 150,
-                height: 180,
-                errorBuilder: (context, error, stackTrace) => Container(
-                    color: Colors.grey[200],
-                    child: const Icon(Icons.image_not_supported)),
-              ),
-            ),
-          ),
-        const SizedBox(height: 8),
-        Text(
-          _currentBook!.title,
-          textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 6),
-        Text(
-          _currentBook!.author,
-          style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.black54),
-        ),
-        const SizedBox(height: 10),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            children: [
-              Slider(
-                min: 0,
-                max: totalSeconds.toDouble(),
-                value: sliderValue,
-                onChanged: (value) {
-                  _player.seek(Duration(seconds: value.round()));
-                },
-                activeColor: Theme.of(context).primaryColor,
-                inactiveColor: Theme.of(context).primaryColorLight,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    _formatDuration(Duration(seconds: sliderValue.toInt())),
-                    style: const TextStyle(fontSize: 14, fontFamily: 'monospace'),
-                  ),
-                  Text(
-                    _formatDuration(totalDuration),
-                    style: const TextStyle(fontSize: 14, fontFamily: 'monospace'),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.replay_10),
-              onPressed: () => _player.seek(_position - const Duration(seconds: 10)),
-            ),
-            IconButton(
-              icon: Icon(_isPlaying ? Icons.pause : Icons.play_arrow),
-              onPressed: () {
-                setState(() {
-                  _isPlaying = !_isPlaying;
-                });
-                _isPlaying ? _player.play() : _player.pause();
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.forward_10),
-              onPressed: () => _player.seek(_position + const Duration(seconds: 10)),
-            ),
-          ],
-        ),
-      ],
-    );
+  // PUBLIC_INTERFACE
+  void prevChapter() {
+    if (currentChapter > 0) {
+      goToChapter(currentChapter - 1);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    const accentColor = Color(0xffdcb7d9);
+    const secondaryColor = Color(0xff583aee);
+    const primaryColor = Color(0xffbadbf7);
+    final chapterCount = widget.audiobook.chapters.length;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Audiobook Player"),
+        backgroundColor: primaryColor,
+        title: Text(widget.audiobook.title, style: const TextStyle(color: Colors.black)),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Center(
-          child: _buildPlayer(),
-        ),
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          // Chapter List
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Chapters',
+                style: TextStyle(
+                  color: secondaryColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
+                  letterSpacing: 0.5,
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: ListView.separated(
+              itemCount: chapterCount,
+              separatorBuilder: (_, __) => const Divider(color: primaryColor, height: 1),
+              itemBuilder: (context, index) {
+                final chapter = widget.audiobook.chapters[index];
+                final selected = currentChapter == index;
+                return ListTile(
+                  selected: selected,
+                  selectedTileColor: accentColor.withValues(alpha: 0.08),
+                  title: Text(
+                    chapter.title,
+                    style: TextStyle(
+                      fontWeight: selected ? FontWeight.bold : FontWeight.normal,
+                      color: selected ? secondaryColor : Colors.black87,
+                    ),
+                  ),
+                  trailing: selected
+                      ? const Icon(Icons.play_arrow_rounded, color: Colors.green)
+                      : null,
+                  onTap: () => goToChapter(index),
+                  dense: true,
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 2.0),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                );
+              },
+            ),
+          ),
+          const SizedBox(height: 20),
+          // Now playing section
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: [
+                // Chapter label
+                Text(
+                  'Now Playing: ${widget.audiobook.chapters[currentChapter].title}',
+                  style: const TextStyle(
+                      color: secondaryColor, fontWeight: FontWeight.w600, fontSize: 16.0),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 10),
+                // Progress bar -- placeholder, as real duration data is not in scope.
+                SizedBox(
+                  height: 6,
+                  child: LinearProgressIndicator(
+                    value: 0.3,
+                    backgroundColor: primaryColor.withValues(alpha: 0.4),
+                    color: accentColor,
+                    minHeight: 6,
+                  ),
+                ),
+                const SizedBox(height: 18),
+                // Controls
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Previous chapter
+                    IconButton(
+                        icon: const Icon(Icons.skip_previous_rounded, size: 36),
+                        color: secondaryColor,
+                        onPressed: currentChapter > 0 ? prevChapter : null),
+                    // Play / Pause
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 16),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          padding: const WidgetStatePropertyAll(
+                              EdgeInsets.symmetric(horizontal: 32, vertical: 12)),
+                          backgroundColor: const WidgetStatePropertyAll(accentColor),
+                          shape: WidgetStatePropertyAll(
+                            RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
+                          ),
+                        ),
+                        onPressed: isPlaying ? pause : play,
+                        child: Icon(
+                          isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
+                          color: Colors.white,
+                          size: 32,
+                        ),
+                      ),
+                    ),
+                    // Next chapter
+                    IconButton(
+                        icon: const Icon(Icons.skip_next_rounded, size: 36),
+                        color: secondaryColor,
+                        onPressed: currentChapter < chapterCount - 1 ? nextChapter : null),
+                  ],
+                ),
+                const SizedBox(height: 18),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

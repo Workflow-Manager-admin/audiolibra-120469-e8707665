@@ -10,7 +10,7 @@ void main() {
     await tester.pumpWidget(
       ChangeNotifierProvider<AppState>.value(
         value: appState,
-        child: const AudiolibraApp(),
+        child: const AudiobookApp(),
       ),
     );
 
