@@ -5,51 +5,55 @@ import 'models/audiobook.dart';
 class AppState extends ChangeNotifier {
   // Canonical dummy data for the store
   final List<Audiobook> _storeAudiobooks = [
+    // 1984 update
     Audiobook(
       id: '1984',
       title: '1984',
       author: 'George Orwell',
-      coverUrl: 'https://covers.openlibrary.org/b/id/7222246-L.jpg',
+      coverUrl: 'https://images.thalia.media/07/-/cbed699587704a8a9bc0a1e96b90493f/1984-gebundene-ausgabe-george-orwell.jpeg',
       price: 12.99,
-      sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-      audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-      description: 'A dystopian social science fiction novel and cautionary tale about the dangers of totalitarianism.',
+      sampleUrl: 'https://www.example.com/audio/1984_sample.mp3',
+      audioUrl: 'https://www.example.com/audio/1984.mp3',
+      description: 'A dystopian novel set in a totalitarian society ruled by Big Brother.',
       durationSeconds: 36000,
     ),
+    // Moby Dick update
     Audiobook(
-      id: 'mobydick',
+      id: 'moby_dick',
       title: 'Moby Dick',
       author: 'Herman Melville',
-      coverUrl: 'https://covers.openlibrary.org/b/id/5551866-L.jpg',
+      coverUrl: 'https://images.randomhouse.com/cover/9780143105954',
       price: 15.49,
-      sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
-      audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+      sampleUrl: 'https://www.example.com/audio/moby_dick_sample.mp3',
+      audioUrl: 'https://www.example.com/audio/moby_dick.mp3',
       description: 'A classic tale of revenge and obsession on the high seas, featuring Captain Ahab and the white whale.',
       durationSeconds: 79224,
     ),
+    // The Great Gatsby update
     Audiobook(
-      id: 'gatsby',
+      id: 'the_great_gatsby',
       title: 'The Great Gatsby',
       author: 'F. Scott Fitzgerald',
-      coverUrl: 'https://covers.openlibrary.org/b/id/7352161-L.jpg',
+      coverUrl: 'https://tse4.mm.bing.net/th/id/OIP.uBeGOh6Ir7HpGap_TsorEQHaKf?rs=1&pid=ImgDetMain&o=7&rm=3',
       price: 10.00,
-      sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
-      audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
+      sampleUrl: 'https://www.example.com/audio/the_great_gatsby_sample.mp3',
+      audioUrl: 'https://www.example.com/audio/the_great_gatsby.mp3',
       description: 'A portrait of the Jazz Age in all of its decadence and excess, told through the eyes of Nick Carraway.',
       durationSeconds: 30482,
     ),
+    // Pride and Prejudice update
     Audiobook(
-      id: 'pride',
+      id: 'pride_and_prejudice',
       title: 'Pride and Prejudice',
       author: 'Jane Austen',
-      coverUrl: 'https://covers.openlibrary.org/b/id/8091016-L.jpg',
+      coverUrl: 'https://tse4.mm.bing.net/th/id/OIP.g7a3ggdb6yPVZ0iLmYQi-gHaK_?rs=1&pid=ImgDetMain&o=7&rm=3',
       price: 9.99,
-      sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3',
-      audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3',
+      sampleUrl: 'https://www.example.com/audio/pride_and_prejudice_sample.mp3',
+      audioUrl: 'https://www.example.com/audio/pride_and_prejudice.mp3',
       description: 'A romantic novel of manners that depicts issues of marriage, morality, and misconceptions.',
       durationSeconds: 52052,
     ),
-    // --- New Dummy Books Below ---
+    // --- Other Dummy Books Below (untouched) ---
     Audiobook(
       id: 'adventure-begins',
       title: 'The Adventure Begins',
