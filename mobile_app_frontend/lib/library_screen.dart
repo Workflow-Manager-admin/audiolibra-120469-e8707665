@@ -19,7 +19,10 @@ class LibraryScreen extends StatelessWidget {
       title: "Moby Dick",
       author: "Herman Melville",
       coverUrl: "",
-      tags: ["classic", "adventure"],
+      price: 0.0,
+      sampleUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+      audioUrl: "https://www.sample-videos.com/audio/mp3/wave.mp3",
+      durationSeconds: 900,
       description: "A classic novel about the adventures aboard the Pequod.",
       chapters: [
         AudiobookChapter(
@@ -30,6 +33,7 @@ class LibraryScreen extends StatelessWidget {
             title: "Chapter 3: The Spouter-Inn", mp4Url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"),
       ],
       coverAssetPath: "assets/moby_dick_cover.jpg",
+      tags: ["classic", "adventure"],
     ),
   ];
 
