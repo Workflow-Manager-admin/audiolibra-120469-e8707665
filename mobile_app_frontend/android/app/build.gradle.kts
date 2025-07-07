@@ -8,15 +8,9 @@ plugins {
 android {
     // Set the NDK version required by plugins and project
     ndkVersion = "27.0.12077973"
-    // Added to satisfy build requirement for plugins needing a specific NDK version
-    ndkVersion = "27.0.12077973"
-    // Specify NDK version for build stability and compatibility
-    ndkVersion = "27.0.12077973"
-    // Specify NDK version required for just_audio, audio_session, and path_provider_android plugins
-    ndkVersion = "27.0.12077973"
+
     namespace = "com.example.mobile_app_frontend"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
