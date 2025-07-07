@@ -16,11 +16,6 @@ gradleEnterprise {
         termsOfServiceAgree = "yes"
         publishAlways()
         
-        // Capture task inputs for better caching
-        capture {
-            taskInputFiles = true
-        }
-        
         // Add custom tags for better analysis
         tag("CI")
         value("CI_BUILD", "true")
