@@ -6,7 +6,11 @@ import 'app_state.dart';
 /// The store screen for browsing audiobooks and purchasing.
 /// Displays books as a grid, with search functionality.
 class StoreScreen extends StatelessWidget {
-  const StoreScreen({super.key});
+  // PUBLIC_INTERFACE
+  /// StoreScreen displays a list of audiobooks available for purchase.
+  /// [onPurchase] is a callback when a purchase occurs.
+  final void Function(Audiobook) onPurchase;
+  const StoreScreen({super.key, required this.onPurchase});
 
   // Responsive grid crossAxisCount for different devices
   int getCrossAxisCount(BuildContext context) {
@@ -36,6 +40,7 @@ class StoreScreen extends StatelessWidget {
         ownedIds: ownedIds,
         appState: appState,
         crossAxisCount: getCrossAxisCount(context),
+        onPurchase: onPurchase,
       ),
     );
   }
@@ -47,12 +52,14 @@ class _StoreScreenBody extends StatefulWidget {
   final Set<String> ownedIds;
   final AppState appState;
   final int crossAxisCount;
+  final void Function(Audiobook) onPurchase;
 
   const _StoreScreenBody({
     required this.storeBooks,
     required this.ownedIds,
     required this.appState,
     required this.crossAxisCount,
+    required this.onPurchase,
   });
 
   @override
@@ -138,8 +145,7 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
                   if (!owned)
                     ElevatedButton(
                       onPressed: () async {
-                        // Immediate mock purchase: add to library and show snackbar
-                        widget.appState.addToLibrary(audiobook);
+                        widget.onPurchase(audiobook);
                         Navigator.of(dialogContext).pop();
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -264,8 +270,7 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
                                       width: double.infinity,
                                       child: ElevatedButton(
                                         onPressed: () async {
-                                          // Immediate mock purchase: add to library and show snackbar
-                                          widget.appState.addToLibrary(book);
+                                          widget.onPurchase(book);
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             const SnackBar(
