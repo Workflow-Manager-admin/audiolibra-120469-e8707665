@@ -7,10 +7,7 @@ plugins {
 
 android {
     // PUBLIC_INTERFACE
-    // Do not set ndkVersion unless you add native code. The CI/docker build will then not require a specific NDK version.
-    // To hard-pin, uncomment and set as below:
-    // ndkVersion = "27.0.12077973"
-
+    // No ndkVersion specified since we have no native code requirements
     namespace = "com.example.mobile_app_frontend"
     compileSdk = flutter.compileSdkVersion
 
