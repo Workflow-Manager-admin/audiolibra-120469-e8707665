@@ -1,17 +1,20 @@
 /// PUBLIC_INTERFACE
-/// Represents a complete Audiobook (with chapters), for the audiobook app.
+/// Represents a complete Audiobook for the audiobook app,
+/// including all fields needed for store, playback, and display.
 class Audiobook {
   final String id;
   final String title;
   final String author;
   final String coverUrl;
-  final String? description;
-  final List<AudiobookChapter> chapters;
+  final String description; // Now non-nullable.
+  final double price;
+  final String sampleUrl;
+  final String audioUrl;
+  final int durationSeconds;
 
-  // Asset path for cover image (for demo/sample data UI).
+  // The following are optional or legacy fields; used for future extensibility
+  final List<AudiobookChapter>? chapters;
   final String? coverAssetPath;
-
-  // Optional tags.
   final List<String>? tags;
 
   /// PUBLIC_INTERFACE
@@ -21,8 +24,12 @@ class Audiobook {
     required this.title,
     required this.author,
     required this.coverUrl,
-    required this.chapters,
-    this.description,
+    required this.price,
+    required this.sampleUrl,
+    required this.audioUrl,
+    required this.description,
+    required this.durationSeconds,
+    this.chapters,
     this.coverAssetPath,
     this.tags,
   });
