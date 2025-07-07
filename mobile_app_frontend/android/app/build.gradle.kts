@@ -9,7 +9,7 @@ android {
     // PUBLIC_INTERFACE
     // Do not set ndkVersion unless you add native code. The CI/docker build will then not require a specific NDK version.
     // To hard-pin, uncomment and set as below:
-    // ndkVersion = "27.0.12077973"
+    ndkVersion = "27.0.12077973"
 
     namespace = "com.example.mobile_app_frontend"
     compileSdk = flutter.compileSdkVersion
@@ -46,4 +46,8 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.9.24"))
 }

@@ -9,9 +9,9 @@
     },
     {
       "name": "audio_session",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/audio_session-0.1.14",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/audio_session-0.1.25",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "3.4"
     },
     {
       "name": "boolean_selector",
@@ -99,9 +99,9 @@
     },
     {
       "name": "just_audio",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/just_audio-0.9.29",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/just_audio-0.9.46",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.0"
     },
     {
       "name": "just_audio_platform_interface",
@@ -171,15 +171,15 @@
     },
     {
       "name": "path_provider",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/path_provider-2.0.15",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/path_provider-2.1.5",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.4"
     },
     {
       "name": "path_provider_android",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/path_provider_android-2.0.15",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "3.6"
     },
     {
       "name": "path_provider_foundation",
@@ -320,7 +320,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2025-07-07T18:50:41.943290Z",
+  "generated": "2025-07-07T19:05:29.353852Z",
   "generator": "pub",
   "generatorVersion": "3.7.0",
   "flutterRoot": "file:///opt/flutter",
