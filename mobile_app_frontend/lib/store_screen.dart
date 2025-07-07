@@ -1,25 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app_frontend/app_state.dart';
 import 'package:provider/provider.dart';
 import 'models/audiobook.dart';
-import 'app_state.dart';
 
-/// The store screen for browsing audiobooks and purchasing.
-/// Displays books as a grid, with search functionality.
+/// The Store screen for browsing audiobooks and purchasing.
+/// Only displays the specified 8 titles for this task.
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});
 
-  // Responsive grid crossAxisCount for different devices
-  int getCrossAxisCount(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    if (width > 700) {
-      return 4;
-    } else if (width > 400) {
-      return 2;
-    } else {
-      return 1;
-    }
-  }
-
+  // PUBLIC_INTERFACE
   @override
   Widget build(BuildContext context) {
     // Use Provider for app state and audiobooks
@@ -27,52 +16,101 @@ class StoreScreen extends StatelessWidget {
     final List<Audiobook> storeBooks = appState.storeAudiobooks;
     final Set<String> ownedIds = appState.ownedAudiobookIds;
 
+    // Only the following titles should be visible, in this order:
+    const titlesToShow = [
+      'Little Women',
+      'Jane Eyre',
+      'Sherlock Holmes',
+      'Frankenstein',
+      'To Kill a Mockingbird',
+      'War and Peace',
+      'The Odyssey',
+      'The Grapes of Wrath',
+    ];
+
+    // Filter and maintain order
+    final filteredBooks = [
+      for (final title in titlesToShow)
+        ...storeBooks.where((ab) => ab.title == title)
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Audiobook Store'),
       ),
-      body: _StoreScreenBody(
-        storeBooks: storeBooks,
-        ownedIds: ownedIds,
-        appState: appState,
-        crossAxisCount: getCrossAxisCount(context),
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: ListView.builder(
+          itemCount: filteredBooks.length,
+          itemBuilder: (ctx, idx) {
+            final book = filteredBooks[idx];
+            final bool owned = ownedIds.contains(book.id);
+            return Card(
+              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(14),
+              ),
+              elevation: 4,
+              child: ListTile(
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: book.coverUrl.isNotEmpty
+                      ? Image.network(
+                          book.coverUrl,
+                          width: 56,
+                          height: 56,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) =>
+                              const Icon(Icons.broken_image),
+                        )
+                      : const Icon(Icons.audiotrack),
+                ),
+                title: Text(
+                  book.title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                ),
+                subtitle: Text(
+                  book.author,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                trailing: owned
+                    ? const Chip(
+                        label: Text('Owned'),
+                        backgroundColor: Color(0xFFD9F3DB),
+                        labelStyle: TextStyle(
+                            color: Color(0xFF387D47), fontWeight: FontWeight.bold),
+                      )
+                    : ElevatedButton(
+                        onPressed: () async {
+                          appState.addToLibrary(book);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                  "Purchase succeeded! Book added to your library."),
+                            ),
+                          );
+                        },
+                        child:
+                            Text('\$${book.price.toStringAsFixed(2)} Buy'),
+                      ),
+                onTap: () => _showAudiobookDialog(context, book, owned, appState),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
-}
-
-/// The main body containing search and grid
-class _StoreScreenBody extends StatefulWidget {
-  final List<Audiobook> storeBooks;
-  final Set<String> ownedIds;
-  final AppState appState;
-  final int crossAxisCount;
-
-  const _StoreScreenBody({
-    required this.storeBooks,
-    required this.ownedIds,
-    required this.appState,
-    required this.crossAxisCount,
-  });
-
-  @override
-  State<_StoreScreenBody> createState() => _StoreScreenBodyState();
-}
-
-class _StoreScreenBodyState extends State<_StoreScreenBody> {
-  String _search = '';
-
-  List<Audiobook> get filteredBooks {
-    if (_search.isEmpty) return widget.storeBooks;
-    return widget.storeBooks
-        .where((b) =>
-            b.title.toLowerCase().contains(_search.toLowerCase()) ||
-            b.author.toLowerCase().contains(_search.toLowerCase()))
-        .toList();
-  }
 
   // PUBLIC_INTERFACE
-  void _showAudiobookDialog(BuildContext context, Audiobook audiobook, bool owned) {
+  void _showAudiobookDialog(
+      BuildContext context, Audiobook audiobook, bool owned, AppState appState) {
     showDialog(
       context: context,
       builder: (BuildContext dialogContext) {
@@ -94,6 +132,8 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
                         audiobook.coverUrl,
                         height: 220,
                         fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Icon(Icons.broken_image),
                       ),
                     )
                   else
@@ -133,17 +173,17 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
                       label: Text('Owned'),
                       backgroundColor: Color(0xFFD9F3DB),
                       labelStyle: TextStyle(
-                        color: Color(0xFF387D47), fontWeight: FontWeight.bold),
+                          color: Color(0xFF387D47), fontWeight: FontWeight.bold),
                     ),
                   if (!owned)
                     ElevatedButton(
                       onPressed: () async {
-                        // Immediate mock purchase: add to library and show snackbar
-                        widget.appState.addToLibrary(audiobook);
+                        appState.addToLibrary(audiobook);
                         Navigator.of(dialogContext).pop();
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text("Purchase succeeded! Book added to your library."),
+                            content: Text(
+                                "Purchase succeeded! Book added to your library."),
                           ),
                         );
                       },
@@ -154,9 +194,8 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      child: Text(
-                        '\$${audiobook.price.toStringAsFixed(2)} Buy'
-                      ),
+                      child:
+                          Text('\$${audiobook.price.toStringAsFixed(2)} Buy'),
                     ),
                   ElevatedButton(
                     onPressed: () => Navigator.of(dialogContext).pop(),
@@ -173,159 +212,6 @@ class _StoreScreenBodyState extends State<_StoreScreenBody> {
               ),
             ),
           ),
-        );
-      },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Column(
-        children: [
-          TextField(
-            decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.search),
-              hintText: 'Search by title or author',
-              isDense: true,
-            ),
-            onChanged: (v) => setState(() => _search = v),
-          ),
-          const SizedBox(height: 18),
-          Expanded(
-            child: GridView.builder(
-              itemCount: filteredBooks.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: widget.crossAxisCount,
-                mainAxisSpacing: 14,
-                crossAxisSpacing: 14,
-                childAspectRatio: 0.62,
-              ),
-              itemBuilder: (ctx, idx) {
-                final book = filteredBooks[idx];
-                final bool owned = widget.ownedIds.contains(book.id);
-
-                return Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  elevation: 4,
-                  clipBehavior: Clip.antiAlias,
-                  child: InkWell(
-                    onTap: () {
-                      _showAudiobookDialog(context, book, owned);
-                    },
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Expanded(
-                          child: _CoverImageWidget(url: book.coverUrl),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 4),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                book.title,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(fontWeight: FontWeight.w600),
-                              ),
-                              Text(
-                                book.author,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context).textTheme.bodySmall,
-                              ),
-                              const SizedBox(height: 6),
-                              Text(
-                                book.description,
-                                style: TextStyle(
-                                    color: Colors.grey[800], fontSize: 13),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              const SizedBox(height: 4),
-                              owned
-                                  ? const Chip(
-                                      label: Text('Owned'),
-                                      backgroundColor: Color(0xFFD9F3DB),
-                                      labelStyle: TextStyle(
-                                          color: Color(0xFF387D47),
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  : SizedBox(
-                                      width: double.infinity,
-                                      child: ElevatedButton(
-                                        onPressed: () async {
-                                          // Immediate mock purchase: add to library and show snackbar
-                                          widget.appState.addToLibrary(book);
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            const SnackBar(
-                                              content: Text(
-                                                  "Purchase succeeded! Book added to your library."),
-                                            ),
-                                          );
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 6)),
-                                        child: Text(
-                                            '\$${book.price.toStringAsFixed(2)} Buy'),
-                                      ),
-                                    ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-  // The Stripe/dialog mock is fully removed.
-}
-
-/// Cover image widget with loading/error handling.
-class _CoverImageWidget extends StatelessWidget {
-  final String url;
-
-  const _CoverImageWidget({required this.url});
-
-  @override
-  Widget build(BuildContext context) {
-    if (url.isEmpty) {
-      return Container(
-        color: Colors.grey.shade200,
-        child: const Icon(Icons.library_music, size: 46),
-      );
-    }
-    return Image.network(
-      url,
-      fit: BoxFit.cover,
-      loadingBuilder: (context, child, loadingProgress) {
-        if (loadingProgress == null) return child;
-        return Container(
-          color: Colors.grey.shade200,
-          child: const Center(child: CircularProgressIndicator()),
-        );
-      },
-      errorBuilder: (context, error, stackTrace) {
-        return Container(
-          color: Colors.grey.shade300,
-          child: const Center(child: Icon(Icons.broken_image, size: 28)),
         );
       },
     );
