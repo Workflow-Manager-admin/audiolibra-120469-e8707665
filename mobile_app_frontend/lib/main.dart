@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         primaryColor: const Color(0xFFbadbf7),
         colorScheme: ColorScheme.fromSwatch().copyWith(
           secondary: const Color(0xFF583aee),
-          background: Colors.white,
+          surface: Colors.white,
         ),
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
