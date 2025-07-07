@@ -68,7 +68,7 @@ class StoreScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: Text(
-                '\\$${audiobook.price.toStringAsFixed(2)}',
+                '\$${audiobook.price.toStringAsFixed(2)}',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: Theme.of(context).colorScheme.primary,
                       fontWeight: FontWeight.w600,
@@ -145,7 +145,8 @@ class StoreScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'by ${audiobook.author ?? "Unknown Author"}',
+                  // Remove ?? "Unknown Author" since audiobook.author is probably always non-null or type-checked elsewhere.
+                  audiobook.author != null ? 'by ${audiobook.author}' : 'by Unknown Author',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         fontStyle: FontStyle.italic,
                       ),
@@ -159,7 +160,7 @@ class StoreScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 14),
                 Text(
-                  '\\$${audiobook.price.toStringAsFixed(2)}',
+                  '\$${audiobook.price.toStringAsFixed(2)}',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                         fontWeight: FontWeight.bold,
