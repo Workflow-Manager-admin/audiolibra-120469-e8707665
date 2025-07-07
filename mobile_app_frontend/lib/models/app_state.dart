@@ -1,4 +1,6 @@
-class Audiobook with ChangeNotifier {
+import 'package:flutter/foundation.dart';
+
+class Audiobook {
   final String title;
   final String author;
   final String coverUrl;
@@ -14,10 +16,8 @@ class Audiobook with ChangeNotifier {
   });
 }
 
-import 'package:flutter/foundation.dart';
-
 class AppState with ChangeNotifier {
-  final List<Audiobook> audiobooks = [
+  final List<Audiobook> _audiobooks = [
     Audiobook(
       title: 'The Hobbit',
       author: 'J.R.R. Tolkien',
@@ -117,4 +117,30 @@ class AppState with ChangeNotifier {
       description: 'The second book in The Stormlight Archive.'
     ),
   ];
+
+  final List<Audiobook> _library = [];
+  Audiobook? _currentlyPlaying;
+  Duration _currentPosition = Duration.zero;
+
+  List<Audiobook> get audiobooks => _audiobooks;
+  List<Audiobook> get library => _library;
+  Audiobook? get currentlyPlaying => _currentlyPlaying;
+  Duration get currentPosition => _currentPosition;
+
+  void purchase(Audiobook audiobook) {
+    if (!_library.contains(audiobook)) {
+      _library.add(audiobook);
+      notifyListeners();
+    }
+  }
+
+  void play(Audiobook audiobook) {
+    _currentlyPlaying = audiobook;
+    notifyListeners();
+  }
+
+  void seek(Duration position) {
+    _currentPosition = position;
+    notifyListeners();
+  }
 }
