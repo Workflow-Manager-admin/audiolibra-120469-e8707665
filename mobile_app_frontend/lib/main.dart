@@ -102,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final tabs = [
-      StoreScreen(),
+      const StoreScreen(),
       const LibraryScreen(),
       const PlayerScreen(), // No arguments, pulls from Provider/AppState
     ];
