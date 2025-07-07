@@ -3,125 +3,129 @@ import 'package:provider/provider.dart';
 import 'app_state.dart';
 import 'models/audiobook.dart';
 
-// PUBLIC_INTERFACE
+/// The StoreScreen displays all available audiobooks in a responsive grid format,
+/// pulling live data from AppState._storeAudiobooks. Each card shows cover image,
+/// title, and price, and gracefully handles layout on various screen sizes.
+///
 class StoreScreen extends StatelessWidget {
-  /// StoreScreen displays all audiobooks available for sale in a grid of cards.
-  /// Each card shows the cover image (coverUrl), title, and price.
-  /// The book list is retrieved from AppState.storeAudiobooks.
-
+  // PUBLIC_INTERFACE
   const StoreScreen({super.key});
 
-  // PUBLIC_INTERFACE
+  /// Determine item cross axis count based on width for responsiveness.
+  int _getCrossAxisCount(double width) {
+    if (width >= 1200) return 5;
+    if (width >= 900) return 4;
+    if (width >= 600) return 3;
+    return 2;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final audiobooks = context.watch<AppState>().storeAudiobooks;
+    final storeAudiobooks = context.watch<AppState>().storeAudiobooks; // Use only the live AppState list
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Store'),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        elevation: 1,
-      ),
-      body: audiobooks.isEmpty
-          ? const Center(child: Text('No audiobooks available in the store.'))
-          : Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: GridView.builder(
-                itemCount: audiobooks.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // 2 cards per row
-                  childAspectRatio: 0.70, // Card aspect ratio
-                  mainAxisSpacing: 16.0,
-                  crossAxisSpacing: 16.0,
-                ),
-                itemBuilder: (context, index) {
-                  final audiobook = audiobooks[index];
-                  return StoreBookCard(audiobook: audiobook);
-                },
-              ),
-            ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final crossAxisCount = _getCrossAxisCount(constraints.maxWidth);
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text("Audiobook Store"),
+            backgroundColor: Theme.of(context).colorScheme.primary,
+          ),
+          body: Container(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            padding: const EdgeInsets.all(12.0),
+            child: storeAudiobooks.isEmpty
+                ? const Center(child: Text('No audiobooks available'))
+                : GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: crossAxisCount,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                      childAspectRatio: 0.64,
+                    ),
+                    itemCount: storeAudiobooks.length,
+                    itemBuilder: (context, index) {
+                      final Audiobook book = storeAudiobooks[index];
+                      return _AudiobookCard(audiobook: book);
+                    },
+                  ),
+          ),
+        );
+      },
     );
   }
 }
 
-// PUBLIC_INTERFACE
-class StoreBookCard extends StatelessWidget {
-  /// Card widget representing an audiobook in the store grid.
-  /// Shows its coverUrl as Image.network, its title, and its price.
-
+/// A card widget to display an audiobook's cover, title, and price.
+class _AudiobookCard extends StatelessWidget {
   final Audiobook audiobook;
 
-  const StoreBookCard({super.key, required this.audiobook});
+  const _AudiobookCard({required this.audiobook});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.0),
-      ),
+      elevation: 3,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
-        borderRadius: BorderRadius.circular(12.0),
+        borderRadius: BorderRadius.circular(12),
         onTap: () {
-          // TODO: Show book details or purchase dialog
+          // TODO: Implement purchase or navigation to details if needed.
         },
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // Cover Image
-              AspectRatio(
-                aspectRatio: 3 / 4,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: audiobook.coverUrl.isNotEmpty
-                      ? Image.network(
-                          audiobook.coverUrl,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) => Container(
-                            color: Colors.grey[300],
-                            alignment: Alignment.center,
-                            child: const Icon(Icons.library_music, size: 42, color: Colors.grey),
-                          ),
-                        )
-                      : Container(
-                          color: Colors.grey[300],
-                          alignment: Alignment.center,
-                          child: const Icon(Icons.library_music, size: 42, color: Colors.grey),
-                        ),
-                ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            AspectRatio(
+              aspectRatio: 1,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+                child: audiobook.coverUrl.isNotEmpty
+                  ? Image.network(
+                      audiobook.coverUrl,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                        color: Colors.grey[300],
+                        child: Icon(Icons.image_not_supported, color: Colors.grey[600], size: 48),
+                      ),
+                    )
+                  : Container(
+                      color: Colors.grey[300],
+                      child: Icon(Icons.image, color: Colors.grey[600], size: 48),
+                    ),
               ),
-              const SizedBox(height: 12),
-              // Title
-              Text(
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+              child: Text(
                 audiobook.title,
-                style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.left,
               ),
-              const Spacer(),
-              // Price
-              Text(
+            ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 10),
+              child: Text(
                 _formatPrice(audiobook.price),
-                style: theme.textTheme.titleSmall?.copyWith(
-                  color: theme.colorScheme.secondary,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.bold,
+                  fontSize: 16,
                 ),
+                textAlign: TextAlign.left,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  // PUBLIC_INTERFACE
   static String _formatPrice(double price) {
-    /// Returns price formatted as a string with a currency sign.
+    // PUBLIC_INTERFACE
+    /// Returns formatted price string with currency symbol.
     return "\$${price.toStringAsFixed(2)}";
   }
 }
