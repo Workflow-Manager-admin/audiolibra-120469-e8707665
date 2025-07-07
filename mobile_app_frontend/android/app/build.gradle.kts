@@ -6,6 +6,8 @@ plugins {
 }
 
 android {
+    // Set the required NDK version for proper audio plugin compatibility
+    ndkVersion = "27.0.12077973"
     // Specify the required NDK version for plugin compatibility
     ndkVersion = "27.0.12077973"
     namespace = "com.example.mobile_app_frontend"
