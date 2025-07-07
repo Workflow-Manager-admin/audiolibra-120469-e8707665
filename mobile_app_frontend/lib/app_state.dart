@@ -84,7 +84,7 @@ class AppState extends ChangeNotifier {
       id: 'hobbit',
       title: 'The Hobbit',
       author: 'J.R.R. Tolkien',
-      coverUrl: 'https://th.bing.com/th/id/R.47b039453a21e68e86662c235471ba6c?rik=BljL6TcOpXxaPQ&pid=ImgRaw&r=0', // General cover image
+      coverUrl: 'https://www.yumpu.com/en/image/facebook/67356374.jpg', // Updated cover
       price: 14.99,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3',
@@ -108,7 +108,7 @@ class AppState extends ChangeNotifier {
       id: 'sherlockholmes',
       title: 'The Adventures of Sherlock Holmes',
       author: 'Arthur Conan Doyle',
-      coverUrl: 'https://th.bing.com/th/id/R.47b039453a21e68e86662c235471ba6c?rik=BljL6TcOpXxaPQ&pid=ImgRaw&r=0', // General cover image
+      coverUrl: 'https://tse3.mm.bing.net/th/id/OIP.OAFsgrz1IEX5ZZVn3OmOIgHaLc?rs=1&pid=ImgDetMain&o=7&rm=3', // Updated cover
       price: 9.99,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3',
