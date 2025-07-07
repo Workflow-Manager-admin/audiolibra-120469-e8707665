@@ -78,7 +78,7 @@ class StoreScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(12.0, 4.0, 12.0, 6.0),
               child: Text(
-                audiobook.description ?? "",
+                audiobook.description,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: Colors.grey[700],
                     ),
@@ -145,8 +145,7 @@ class StoreScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  // Remove ?? "Unknown Author" since audiobook.author is probably always non-null or type-checked elsewhere.
-                  audiobook.author != null ? 'by ${audiobook.author}' : 'by Unknown Author',
+                  'by ${audiobook.author}',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         fontStyle: FontStyle.italic,
                       ),
@@ -155,7 +154,7 @@ class StoreScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  audiobook.description ?? "No description available.",
+                  audiobook.description,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 14),
