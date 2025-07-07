@@ -28,6 +28,25 @@ A modern, minimalistic Flutter app for browsing, purchasing, and listening to au
 
 **Local storage:** Hive DB
 
+## Android/NDK Build Troubleshooting
+
+**NDK Failures in CI/Docker**
+- The build error `Failed to install the following SDK components: ndk;27.0.12077973` indicates the CI environment is not installing the expected NDK.
+- Check your `local.properties` for `ndk.dir` or Android Studio SDK/NDK side-by-side installation.
+- The build should NOT hard-pin `ndkVersion` in Gradle unless native code specifically requires it. NDK version can be chosen by CI or the developer machine.
+- For CI pipelines or Docker, ensure the following before Gradle/Flutter build:
+  - Install the required NDK package using `sdkmanager "ndk;27.0.12077973"` if this exact version is required, or
+  - Set up the `ndk.dir` path in `local.properties` to point to the installed NDK root, or
+  - If not using NDK, make sure no `ndkVersion` field is present in your gradle files.
+
+**Sample installation in CI:**
+```bash
+yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "ndk;27.0.12077973"
+```
+or let the build use the system NDK if no specific version is needed.
+
+**Common fix:** If upgrading or downgrading NDK isn't possible due to permissions, remove (comment out) any `ndkVersion` setting from `android/app/build.gradle.kts` and rerun the build.
+
 ## Project structure
 
 - `lib/main.dart` — App entry point, theme, and navigation
