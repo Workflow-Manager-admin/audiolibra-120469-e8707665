@@ -27,9 +27,9 @@
     },
     {
       "name": "audio_session",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/audio_session-0.1.25",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/audio_session-0.1.18",
       "packageUri": "lib/",
-      "languageVersion": "3.4"
+      "languageVersion": "2.14"
     },
     {
       "name": "boolean_selector",
@@ -39,39 +39,9 @@
     },
     {
       "name": "build",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/build-2.5.4",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
-    },
-    {
-      "name": "build_config",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/build_config-1.1.2",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/build-2.4.2",
       "packageUri": "lib/",
       "languageVersion": "3.6"
-    },
-    {
-      "name": "build_daemon",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/build_daemon-4.0.4",
-      "packageUri": "lib/",
-      "languageVersion": "3.6"
-    },
-    {
-      "name": "build_resolvers",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/build_resolvers-2.5.4",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
-    },
-    {
-      "name": "build_runner",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/build_runner-2.5.4",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
-    },
-    {
-      "name": "build_runner_core",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/build_runner_core-9.1.2",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
     },
     {
       "name": "built_collection",
@@ -90,12 +60,6 @@
       "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/characters-1.4.0",
       "packageUri": "lib/",
       "languageVersion": "3.4"
-    },
-    {
-      "name": "checked_yaml",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/checked_yaml-2.0.3",
-      "packageUri": "lib/",
-      "languageVersion": "2.19"
     },
     {
       "name": "clock",
@@ -171,9 +135,9 @@
     },
     {
       "name": "flutter_lints",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/flutter_lints-3.0.2",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/flutter_lints-3.0.0",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "3.0"
     },
     {
       "name": "flutter_test",
@@ -188,22 +152,10 @@
       "languageVersion": "3.7"
     },
     {
-      "name": "frontend_server_client",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/frontend_server_client-4.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
-    },
-    {
       "name": "glob",
       "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/glob-2.1.3",
       "packageUri": "lib/",
       "languageVersion": "3.3"
-    },
-    {
-      "name": "graphs",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/graphs-2.3.2",
-      "packageUri": "lib/",
-      "languageVersion": "3.4"
     },
     {
       "name": "hive",
@@ -219,15 +171,9 @@
     },
     {
       "name": "http",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/http-1.4.0",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/http-1.2.1",
       "packageUri": "lib/",
-      "languageVersion": "3.4"
-    },
-    {
-      "name": "http_multi_server",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/http_multi_server-3.2.2",
-      "packageUri": "lib/",
-      "languageVersion": "3.2"
+      "languageVersion": "3.3"
     },
     {
       "name": "http_parser",
@@ -236,26 +182,8 @@
       "languageVersion": "3.4"
     },
     {
-      "name": "io",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/io-1.0.5",
-      "packageUri": "lib/",
-      "languageVersion": "3.4"
-    },
-    {
-      "name": "js",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/js-0.7.2",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
-    },
-    {
-      "name": "json_annotation",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/json_annotation-4.9.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
-    },
-    {
       "name": "just_audio",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/just_audio-0.9.46",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/just_audio-0.9.38",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -267,7 +195,7 @@
     },
     {
       "name": "just_audio_web",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/just_audio_web-0.4.16",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/just_audio_web-0.4.13",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -320,12 +248,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "mime",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/mime-2.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.2"
-    },
-    {
       "name": "mockito",
       "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/mockito-5.4.6",
       "packageUri": "lib/",
@@ -357,9 +279,9 @@
     },
     {
       "name": "path_provider",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/path_provider-2.1.5",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/path_provider-2.1.3",
       "packageUri": "lib/",
-      "languageVersion": "3.4"
+      "languageVersion": "3.1"
     },
     {
       "name": "path_provider_android",
@@ -404,14 +326,8 @@
       "languageVersion": "3.0"
     },
     {
-      "name": "pool",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/pool-1.5.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "provider",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/provider-6.1.5",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/provider-6.1.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -422,28 +338,10 @@
       "languageVersion": "3.4"
     },
     {
-      "name": "pubspec_parse",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/pubspec_parse-1.5.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.6"
-    },
-    {
       "name": "rxdart",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/rxdart-0.28.0",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/rxdart-0.27.7",
       "packageUri": "lib/",
       "languageVersion": "2.12"
-    },
-    {
-      "name": "shelf",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/shelf-1.4.2",
-      "packageUri": "lib/",
-      "languageVersion": "3.4"
-    },
-    {
-      "name": "shelf_web_socket",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/shelf_web_socket-3.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.5"
     },
     {
       "name": "sky_engine",
@@ -482,22 +380,10 @@
       "languageVersion": "3.3"
     },
     {
-      "name": "stream_transform",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/stream_transform-2.1.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.1"
-    },
-    {
       "name": "string_scanner",
       "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/string_scanner-1.4.1",
       "packageUri": "lib/",
       "languageVersion": "3.1"
-    },
-    {
-      "name": "synchronized",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/synchronized-3.3.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
     },
     {
       "name": "term_glyph",
@@ -510,12 +396,6 @@
       "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/test_api-0.7.4",
       "packageUri": "lib/",
       "languageVersion": "3.5"
-    },
-    {
-      "name": "timing",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/timing-1.0.2",
-      "packageUri": "lib/",
-      "languageVersion": "3.4"
     },
     {
       "name": "typed_data",
@@ -549,19 +429,7 @@
     },
     {
       "name": "web",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/web-1.1.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.4"
-    },
-    {
-      "name": "web_socket",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/web_socket-1.0.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.4"
-    },
-    {
-      "name": "web_socket_channel",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/web_socket_channel-3.0.3",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/web-0.5.1",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
@@ -584,7 +452,7 @@
       "languageVersion": "3.7"
     }
   ],
-  "generated": "2025-07-07T21:15:46.765006Z",
+  "generated": "2025-07-07T21:16:56.654977Z",
   "generator": "pub",
   "generatorVersion": "3.7.0",
   "flutterRoot": "file:///opt/flutter",

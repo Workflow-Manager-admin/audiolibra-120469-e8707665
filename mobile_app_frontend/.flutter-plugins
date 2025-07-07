@@ -1,8 +1,8 @@
 # This is a generated file; do not edit or check into version control.
-audio_session=/home/kavia/.pub-cache/hosted/pub.dev/audio_session-0.1.25/
-just_audio=/home/kavia/.pub-cache/hosted/pub.dev/just_audio-0.9.46/
-just_audio_web=/home/kavia/.pub-cache/hosted/pub.dev/just_audio_web-0.4.16/
-path_provider=/home/kavia/.pub-cache/hosted/pub.dev/path_provider-2.1.5/
+audio_session=/home/kavia/.pub-cache/hosted/pub.dev/audio_session-0.1.18/
+just_audio=/home/kavia/.pub-cache/hosted/pub.dev/just_audio-0.9.38/
+just_audio_web=/home/kavia/.pub-cache/hosted/pub.dev/just_audio_web-0.4.13/
+path_provider=/home/kavia/.pub-cache/hosted/pub.dev/path_provider-2.1.3/
 path_provider_android=/home/kavia/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17/
 path_provider_foundation=/home/kavia/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/
 path_provider_linux=/home/kavia/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
