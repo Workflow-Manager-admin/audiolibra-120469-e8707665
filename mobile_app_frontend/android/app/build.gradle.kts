@@ -43,6 +43,17 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+
+    // PUBLIC_INTERFACE
+    // Always output the release APK to the standard path for CI/CD and automation:
+    applicationVariants.all {
+        val variant = this
+        if (variant.buildType.name == "release") {
+            variant.outputs.all {
+                outputFileName = "app-release.apk"
+            }
+        }
+    }
 }
 
 flutter {
