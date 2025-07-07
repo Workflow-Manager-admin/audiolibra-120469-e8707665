@@ -1,38 +1,46 @@
-/// Chapter model representing a playable mp4 for an audiobook chapter.
-class AudiobookChapter {
-  final String title;
-  final String mp4PathOrUrl;
-
-  // PUBLIC_INTERFACE
-  AudiobookChapter({
-    required this.title,
-    required this.mp4PathOrUrl,
-  });
-}
-
-/// Enhanced Audiobook data model supporting chapters for chapter-based playback.
-/// Chapters are represented as a list of AudiobookChapter objects.
+/// PUBLIC_INTERFACE
+/// Represents a complete Audiobook (with chapters), for the audiobook app.
 class Audiobook {
   final String id;
   final String title;
   final String author;
   final String coverUrl;
-  final List<String> tags;
-  final String description;
+  final String? description;
   final List<AudiobookChapter> chapters;
-  final String coverAssetPath;
-  final double price;
 
-  // PUBLIC_INTERFACE
+  // Asset path for cover image (for demo/sample data UI).
+  final String? coverAssetPath;
+
+  // Optional tags.
+  final List<String>? tags;
+
+  /// PUBLIC_INTERFACE
+  /// Audiobook constructor.
   Audiobook({
     required this.id,
     required this.title,
     required this.author,
     required this.coverUrl,
-    required this.tags,
-    required this.description,
     required this.chapters,
-    required this.coverAssetPath,
-    required this.price,
+    this.description,
+    this.coverAssetPath,
+    this.tags,
+  });
+}
+
+/// PUBLIC_INTERFACE
+/// AudiobookChapter: Represents a single chapter (with title, optional desc, and mp4 path/url).
+class AudiobookChapter {
+  final String title;
+  final String? description;
+  final String mp4Url;
+
+  // For legacy/demo/sample use - allow alternative name.
+  String get mp4PathOrUrl => mp4Url;
+
+  AudiobookChapter({
+    required this.title,
+    required this.mp4Url,
+    this.description,
   });
 }

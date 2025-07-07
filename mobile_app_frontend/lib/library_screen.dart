@@ -22,9 +22,12 @@ class LibraryScreen extends StatelessWidget {
       tags: ["classic", "adventure"],
       description: "A classic novel about the adventures aboard the Pequod.",
       chapters: [
-        AudiobookChapter(title: "Chapter 1: Loomings", mp4PathOrUrl: "assets/moby_ch1.mp4"),
-        AudiobookChapter(title: "Chapter 2: The Carpet-Bag", mp4PathOrUrl: "assets/moby_ch2.mp4"),
-        AudiobookChapter(title: "Chapter 3: The Spouter-Inn", mp4PathOrUrl: "assets/moby_ch3.mp4"),
+        AudiobookChapter(
+            title: "Chapter 1: Loomings", mp4Url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"),
+        AudiobookChapter(
+            title: "Chapter 2: The Carpet-Bag", mp4Url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"),
+        AudiobookChapter(
+            title: "Chapter 3: The Spouter-Inn", mp4Url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4"),
       ],
       coverAssetPath: "assets/moby_dick_cover.jpg",
     ),
@@ -45,15 +48,17 @@ class LibraryScreen extends StatelessWidget {
       itemBuilder: (context, index) {
         final book = library[index];
         return ListTile(
-          leading: ClipRRect(
-            borderRadius: BorderRadius.circular(4.0),
-            child: Image.asset(
-              book.coverAssetPath,
-              height: 48,
-              width: 48,
-              fit: BoxFit.cover,
-            ),
-          ),
+          leading: book.coverAssetPath != null
+              ? ClipRRect(
+                  borderRadius: BorderRadius.circular(4.0),
+                  child: Image.asset(
+                    book.coverAssetPath!,
+                    height: 48,
+                    width: 48,
+                    fit: BoxFit.cover,
+                  ),
+                )
+              : Icon(Icons.library_music, size: 48, color: Theme.of(context).primaryColor),
           title: Text(book.title),
           subtitle: Text(book.author),
           trailing: const Icon(Icons.chevron_right),
