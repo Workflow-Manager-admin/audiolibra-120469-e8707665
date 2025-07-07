@@ -5,6 +5,52 @@ import 'models/audiobook.dart';
 class AppState extends ChangeNotifier {
   // Store audiobooks (available for browsing/purchase) - UPDATED TO SPEC
   final List<Audiobook> _storeAudiobooks = [
+    // --- Classics to restore ---
+    Audiobook(
+      id: '1984',
+      title: '1984',
+      author: 'George Orwell',
+      coverUrl: '', // No actual image available; placeholder
+      price: 9.99,
+      sampleUrl: '',
+      audioUrl: '',
+      description: 'A dystopian classic of surveillance, control, and rebellion. Placeholder description.',
+      durationSeconds: 43000, // Placeholder ~12:00
+    ),
+    Audiobook(
+      id: 'mobydick',
+      title: 'Moby Dick',
+      author: 'Herman Melville',
+      coverUrl: 'assets/moby_dick_cover.jpg', // Placeholder: use local asset if available
+      price: 8.49,
+      sampleUrl: '',
+      audioUrl: '',
+      description: 'Captain Ahab\'s obsessive quest for the elusive white whale. Placeholder description.',
+      durationSeconds: 79000, // Placeholder ~22:00
+    ),
+    Audiobook(
+      id: 'prideandprejudice',
+      title: 'Pride and Prejudice',
+      author: 'Jane Austen',
+      coverUrl: '', // No cover, placeholder
+      price: 7.99,
+      sampleUrl: '',
+      audioUrl: '',
+      description: 'A witty romance about manners, marriage, and society. Placeholder description.',
+      durationSeconds: 41000, // Placeholder ~11:00
+    ),
+    Audiobook(
+      id: 'thegreatgatsby',
+      title: 'The Great Gatsby',
+      author: 'F. Scott Fitzgerald',
+      coverUrl: '', // No cover, placeholder
+      price: 8.99,
+      sampleUrl: '',
+      audioUrl: '',
+      description: 'A novel of the Jazz Age and the elusive American Dream. Placeholder description.',
+      durationSeconds: 27000, // Placeholder ~7:30
+    ),
+    // --- Existing/new books retained; do not duplicate ---
     Audiobook(
       id: 'littlewomen',
       title: 'Little Women',
