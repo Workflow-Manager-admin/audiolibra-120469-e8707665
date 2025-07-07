@@ -10,7 +10,7 @@ class AppState extends ChangeNotifier {
       id: '1984',
       title: '1984',
       author: 'George Orwell',
-      coverUrl: '', // No actual image available; placeholder
+      coverUrl: 'https://images.thalia.media/07/-/cbed699587704a8a9bc0a1e96b90493f/1984-gebundene-ausgabe-george-orwell.jpeg', // Updated to correct external URL
       price: 9.99,
       sampleUrl: '',
       audioUrl: '',
@@ -21,18 +21,18 @@ class AppState extends ChangeNotifier {
       id: 'mobydick',
       title: 'Moby Dick',
       author: 'Herman Melville',
-      coverUrl: 'assets/moby_dick_cover.jpg', // Placeholder: use local asset if available
+      coverUrl: 'https://images.randomhouse.com/cover/9780143105954', // Updated to correct external URL
       price: 8.49,
       sampleUrl: '',
       audioUrl: '',
-      description: 'Captain Ahab\'s obsessive quest for the elusive white whale. Placeholder description.',
+      description: "Captain Ahab's obsessive quest for the elusive white whale. Placeholder description.",
       durationSeconds: 79000, // Placeholder ~22:00
     ),
     Audiobook(
       id: 'prideandprejudice',
       title: 'Pride and Prejudice',
       author: 'Jane Austen',
-      coverUrl: '', // No cover, placeholder
+      coverUrl: 'https://tse4.mm.bing.net/th/id/OIP.g7a3ggdb6yPVZ0iLmYQi-gHaK_?rs=1&pid=ImgDetMain&o=7&rm=3', // Updated to correct external URL
       price: 7.99,
       sampleUrl: '',
       audioUrl: '',
@@ -43,7 +43,7 @@ class AppState extends ChangeNotifier {
       id: 'thegreatgatsby',
       title: 'The Great Gatsby',
       author: 'F. Scott Fitzgerald',
-      coverUrl: '', // No cover, placeholder
+      coverUrl: 'https://tse4.mm.bing.net/th/id/OIP.uBeGOh6Ir7HpGap_TsorEQHaKf?rs=1&pid=ImgDetMain&o=7&rm=3', // Updated to correct external URL
       price: 8.99,
       sampleUrl: '',
       audioUrl: '',
