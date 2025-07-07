@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    // Set the required NDK version for build consistency
+    // Set the required NDK version for build consistency. Only a single definition present.
     ndkVersion = "27.0.12077973"
     namespace = "com.example.mobile_app_frontend"
     compileSdk = flutter.compileSdkVersion
@@ -29,6 +29,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        // No ndkVersion here or elsewhere, only in android block above
     }
 
     buildTypes {
