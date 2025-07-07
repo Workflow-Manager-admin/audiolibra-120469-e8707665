@@ -1,4 +1,4 @@
-class Audiobook {
+class Audiobook with ChangeNotifier {
   final String title;
   final String author;
   final String coverUrl;
@@ -14,7 +14,9 @@ class Audiobook {
   });
 }
 
-class AppState {
+import 'package:flutter/foundation.dart';
+
+class AppState with ChangeNotifier {
   final List<Audiobook> audiobooks = [
     Audiobook(
       title: 'The Hobbit',
