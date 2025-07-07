@@ -6,6 +6,8 @@ plugins {
 }
 
 android {
+    // Set the NDK version required by plugins and project
+    ndkVersion = "27.0.12077973"
     // Added to satisfy build requirement for plugins needing a specific NDK version
     ndkVersion = "27.0.12077973"
     // Specify NDK version for build stability and compatibility

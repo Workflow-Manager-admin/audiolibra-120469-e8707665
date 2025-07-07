@@ -67,7 +67,8 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
   // PUBLIC_INTERFACE
   void nextChapter() {
-    if (currentChapter < widget.audiobook.chapters.length - 1) {
+    final chapters = widget.audiobook.chapters;
+    if (chapters != null && currentChapter < chapters.length - 1) {
       goToChapter(currentChapter + 1);
     }
   }
@@ -84,7 +85,8 @@ class _PlayerScreenState extends State<PlayerScreen> {
     const accentColor = Color(0xffdcb7d9);
     const secondaryColor = Color(0xff583aee);
     const primaryColor = Color(0xffbadbf7);
-    final chapterCount = widget.audiobook.chapters.length;
+    final chapters = widget.audiobook.chapters;
+    final chapterCount = chapters?.length ?? 0;
 
     return Scaffold(
       appBar: AppBar(
@@ -116,13 +118,16 @@ class _PlayerScreenState extends State<PlayerScreen> {
               itemCount: chapterCount,
               separatorBuilder: (_, __) => const Divider(color: primaryColor, height: 1),
               itemBuilder: (context, index) {
-                final chapter = widget.audiobook.chapters[index];
+                // Guard against null chapters
+                final chapter = chapters != null && index < chapters.length
+                    ? chapters[index]
+                    : null;
                 final selected = currentChapter == index;
                 return ListTile(
                   selected: selected,
                   selectedTileColor: accentColor.withValues(alpha: 0.08),
                   title: Text(
-                    chapter.title,
+                    chapter?.title ?? 'Untitled',
                     style: TextStyle(
                       fontWeight: selected ? FontWeight.bold : FontWeight.normal,
                       color: selected ? secondaryColor : Colors.black87,
@@ -131,7 +136,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   trailing: selected
                       ? const Icon(Icons.play_arrow_rounded, color: Colors.green)
                       : null,
-                  onTap: () => goToChapter(index),
+                  onTap: chapters != null ? () => goToChapter(index) : null,
                   dense: true,
                   contentPadding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 2.0),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -147,7 +152,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
               children: [
                 // Chapter label
                 Text(
-                  'Now Playing: ${widget.audiobook.chapters[currentChapter].title}',
+                  chapters != null && currentChapter < chapters.length
+                      ? 'Now Playing: ${chapters[currentChapter].title}'
+                      : 'Now Playing: -',
                   style: const TextStyle(
                       color: secondaryColor, fontWeight: FontWeight.w600, fontSize: 16.0),
                   textAlign: TextAlign.center,
@@ -199,7 +206,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
                     IconButton(
                         icon: const Icon(Icons.skip_next_rounded, size: 36),
                         color: secondaryColor,
-                        onPressed: currentChapter < chapterCount - 1 ? nextChapter : null),
+                        onPressed: (chapters != null && currentChapter < chapterCount - 1)
+                            ? nextChapter
+                            : null),
                   ],
                 ),
                 const SizedBox(height: 18),
