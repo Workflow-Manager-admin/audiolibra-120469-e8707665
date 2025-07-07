@@ -6,10 +6,9 @@ plugins {
 }
 
 android {
-    // PUBLIC_INTERFACE
-
     namespace = "com.example.mobile_app_frontend"
     compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -29,7 +28,6 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-        // No ndkVersion here or elsewhere, only in android block above
     }
 
     buildTypes {

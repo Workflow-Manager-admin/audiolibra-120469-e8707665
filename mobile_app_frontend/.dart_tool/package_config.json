@@ -2,6 +2,12 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "args",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/args-2.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
       "name": "async",
       "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/async-2.12.0",
       "packageUri": "lib/",
@@ -9,9 +15,9 @@
     },
     {
       "name": "audio_session",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/audio_session-0.1.14",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/audio_session-0.1.25",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "3.4"
     },
     {
       "name": "boolean_selector",
@@ -62,6 +68,12 @@
       "languageVersion": "3.7"
     },
     {
+      "name": "fixnum",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/fixnum-1.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///opt/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -69,9 +81,15 @@
     },
     {
       "name": "flutter_lints",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/flutter_lints-3.0.2",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "3.5"
+    },
+    {
+      "name": "flutter_svg",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/flutter_svg-2.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
     },
     {
       "name": "flutter_test",
@@ -98,10 +116,22 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "just_audio",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/just_audio-0.9.29",
+      "name": "http",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/http-1.4.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "http_parser",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/http_parser-4.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "just_audio",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/just_audio-0.9.46",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "just_audio_platform_interface",
@@ -135,9 +165,9 @@
     },
     {
       "name": "lints",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/lints-3.0.0",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/lints-5.1.1",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.6"
     },
     {
       "name": "matcher",
@@ -170,16 +200,22 @@
       "languageVersion": "3.4"
     },
     {
-      "name": "path_provider",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/path_provider-2.0.15",
+      "name": "path_parsing",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/path_parsing-1.1.0",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "path_provider",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/path_provider-2.1.5",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
     },
     {
       "name": "path_provider_android",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/path_provider_android-2.0.15",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/path_provider_android-2.2.17",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "3.6"
     },
     {
       "name": "path_provider_foundation",
@@ -206,6 +242,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "petitparser",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/petitparser-6.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.5"
+    },
+    {
       "name": "platform",
       "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/platform-3.1.6",
       "packageUri": "lib/",
@@ -225,7 +267,7 @@
     },
     {
       "name": "rxdart",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/rxdart-0.27.7",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/rxdart-0.28.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -240,6 +282,12 @@
       "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/source_span-1.10.1",
       "packageUri": "lib/",
       "languageVersion": "3.1"
+    },
+    {
+      "name": "sprintf",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/sprintf-7.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "stack_trace",
@@ -285,9 +333,27 @@
     },
     {
       "name": "uuid",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/uuid-3.0.7",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/uuid-4.5.1",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "vector_graphics",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/vector_graphics-1.1.19",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "vector_graphics_codec",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/vector_graphics_codec-1.1.13",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "vector_graphics_compiler",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/vector_graphics_compiler-1.1.17",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
     },
     {
       "name": "vector_math",
@@ -314,13 +380,19 @@
       "languageVersion": "3.3"
     },
     {
+      "name": "xml",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/xml-6.5.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
       "name": "mobile_app_frontend",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.7"
     }
   ],
-  "generated": "2025-07-07T20:14:18.081029Z",
+  "generated": "2025-07-07T20:24:26.206438Z",
   "generator": "pub",
   "generatorVersion": "3.7.0",
   "flutterRoot": "file:///opt/flutter",
