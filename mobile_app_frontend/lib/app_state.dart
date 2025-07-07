@@ -9,7 +9,7 @@ class AppState extends ChangeNotifier {
       id: '1984',
       title: '1984',
       author: 'George Orwell',
-      coverUrl: 'https://th.bing.com/th/id/R.47b039453a21e68e86662c235471ba6c?rik=BljL6TcOpXxaPQ&pid=ImgRaw&r=0',
+      coverUrl: 'https://th.bing.com/th/id/OIP.L9GCrCznPuEmHSIHTIltkQHaLZ?w=201&h=310&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
       price: 12.99,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
@@ -72,7 +72,7 @@ class AppState extends ChangeNotifier {
       id: 'catcherintherye',
       title: 'The Catcher in the Rye',
       author: 'J.D. Salinger',
-      coverUrl: 'https://th.bing.com/th/id/R.47b039453a21e68e86662c235471ba6c?rik=BljL6TcOpXxaPQ&pid=ImgRaw&r=0', // General cover image
+      coverUrl: 'https://th.bing.com/th/id/OIP.N9mL5RlOOj7ZhlQB3mI_VwHaL7?w=197&h=317&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
       price: 12.25,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3',
