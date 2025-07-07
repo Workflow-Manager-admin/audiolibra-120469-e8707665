@@ -1,0 +1,32 @@
+allprojects {
+    // Configure build cache
+    buildCache {
+        local {
+            enabled = true
+            directory = new File(rootDir, 'build-cache')
+            removeUnusedEntriesAfterDays = 30
+        }
+    }
+    
+    // Configure project evaluation
+    beforeEvaluate { project ->
+        project.plugins.withId('com.android.application') {
+            project.android {
+                // Enable incremental compilation
+                compileOptions {
+                    incremental = true
+                }
+            }
+        }
+    }
+}
+
+gradle.projectsLoaded {
+    rootProject.allprojects {
+        // Configure build scan
+        buildScan {
+            termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+            termsOfServiceAgree = 'yes'
+        }
+    }
+}

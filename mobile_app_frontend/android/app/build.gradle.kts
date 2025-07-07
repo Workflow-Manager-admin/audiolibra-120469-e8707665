@@ -8,6 +8,17 @@ plugins {
 android {
     namespace = "com.example.mobile_app_frontend"
     compileSdk = 34
+    
+    // Enable build features caching
+    buildFeatures {
+        buildConfig = true
+    }
+    
+    // Optimize dex options
+    dexOptions {
+        preDexLibraries = true
+        javaMaxHeapSize = "2g"
+    }
 
 
     compileOptions {
