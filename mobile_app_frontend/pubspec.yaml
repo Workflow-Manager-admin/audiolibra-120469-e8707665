@@ -9,10 +9,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  just_audio: ^0.9.36
+  # Downgraded for Android NDK 26 compatibility (NDK 27 not supported by build env as of 2024/06)
+  # just_audio >=0.9.29 depends on path_provider_android >=2.0.22 which requires NDK 27.
+  # 0.9.29 is last confirmed to work with NDK 26, NDK 27 required for >=0.9.32.
+  just_audio: 0.9.29
+  # audio_session 0.1.14 is last confirmed to work with NDK 26, later versions require NDK 27.
+  audio_session: 0.1.14
+  # path_provider_android 2.0.15 is last confirmed to work with NDK 26 and just_audio 0.9.29.
+  path_provider_android: 2.0.15
+  # Downgrade path_provider for compatible path_provider_android and NDK 26.
+  path_provider: 2.0.15
+
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  path_provider: ^2.1.1
 
   cupertino_icons: ^1.0.6
   provider: ^6.1.5
