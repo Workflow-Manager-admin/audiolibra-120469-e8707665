@@ -6,6 +6,11 @@ plugins {
 }
 
 android {
+    // PUBLIC_INTERFACE
+    /**
+     * Sets the NDK version required for this project.
+     */
+    ndkVersion = "27.0.12077973"
     // Set the required NDK version. PUBLIC_INTERFACE
     // This ensures compatibility and reproducibility for native builds.
  "27.0.12077973"
