@@ -59,25 +59,18 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _selectedIndex = 0;
-
   static const List<Widget> _widgetOptions = <Widget>[
     StoreScreen(),
     LibraryScreen(),
     PlayerScreen(),
   ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final appState = Provider.of<AppState>(context);
     return Scaffold(
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: _widgetOptions.elementAt(appState.selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -94,8 +87,8 @@ class _MainScreenState extends State<MainScreen> {
             label: 'Player',
           ),
         ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+        currentIndex: appState.selectedIndex,
+        onTap: (index) => appState.setSelectedIndex(index),
       ),
     );
   }

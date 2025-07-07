@@ -28,9 +28,7 @@ class LibraryScreen extends StatelessWidget {
                 subtitle: Text(audiobook.author),
                 onTap: () {
                   appState.play(audiobook);
-                  // This is a placeholder for navigating to the player screen
-                  // In the main app, this would likely switch the tab to the player
-                  DefaultTabController.of(context).animateTo(2);
+                  appState.setSelectedIndex(2);
                 },
               );
             },

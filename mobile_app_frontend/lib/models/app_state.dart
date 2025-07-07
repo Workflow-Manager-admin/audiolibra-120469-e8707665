@@ -121,11 +121,18 @@ class AppState with ChangeNotifier {
   final List<Audiobook> _library = [];
   Audiobook? _currentlyPlaying;
   Duration _currentPosition = Duration.zero;
+  int _selectedIndex = 0;
 
   List<Audiobook> get audiobooks => _audiobooks;
   List<Audiobook> get library => _library;
   Audiobook? get currentlyPlaying => _currentlyPlaying;
   Duration get currentPosition => _currentPosition;
+  int get selectedIndex => _selectedIndex;
+
+  void setSelectedIndex(int index) {
+    _selectedIndex = index;
+    notifyListeners();
+  }
 
   void purchase(Audiobook audiobook) {
     if (!_library.contains(audiobook)) {
