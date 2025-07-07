@@ -96,12 +96,11 @@ class _LibraryScreenState extends State<LibraryScreen> {
                     trailing: Icon(Icons.play_circle,
                         color: Theme.of(context).colorScheme.secondary),
                     onTap: () {
-                      appState.setCurrentBook(
-                          book, appState.playbackPositions[book.id] ?? 0);
-                      // Optionally switch to Player tab.
+                      appState.setCurrentBook(book);
+                      // Inform user to check the Player tab
                       ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                              content: Text('Ready to play! Go to Player tab.')));
+                              content: Text('View book details in Player tab')));
                     },
                   );
                 },

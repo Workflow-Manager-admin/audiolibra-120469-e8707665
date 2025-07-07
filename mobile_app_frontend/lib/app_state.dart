@@ -272,14 +272,13 @@ class AppState extends ChangeNotifier {
   // Expose store books
   List<Audiobook> get storeAudiobooks => _storeAudiobooks;
 
-  /// --- PLAYER STATE: Current Audiobook being played/selected ---
+  /// --- Current Audiobook Selection State ---
   Audiobook? _currentBook;
   // PUBLIC_INTERFACE
   Audiobook? get currentBook => _currentBook;
   // PUBLIC_INTERFACE
-  void setCurrentBook(Audiobook book, int position) {
+  void setCurrentBook(Audiobook book) {
     _currentBook = book;
-    // Optionally: set playback position logic (not included here)
     notifyListeners();
   }
 

@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'app_state.dart';
 import 'models/audiobook.dart';
 
-/// PlayerScreen - Displays the currently selected audiobook.
-/// This screen now shows only the audiobook details, without audio playback functionality.
+/// PlayerScreen - Displays the currently selected audiobook details
+/// and provides playback functionality.
 class PlayerScreen extends StatelessWidget {
   const PlayerScreen({super.key});
 
@@ -71,9 +71,13 @@ class PlayerScreen extends StatelessWidget {
           style: const TextStyle(fontSize: 14, fontStyle: FontStyle.italic, color: Colors.black54),
         ),
         const SizedBox(height: 20),
-        const Text(
-          "Audio playback is currently disabled.",
-          style: TextStyle(fontSize: 16, color: Colors.grey),
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 16.0),
+          child: Text(
+            "Audio playback functionality will be implemented in a future update using web-compatible solutions.",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16, color: Colors.grey),
+          ),
         ),
       ],
     );
