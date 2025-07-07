@@ -71,6 +71,7 @@ class Audiobook {
       };
 
   /// Dummy data for demonstration with explicit durations.
+  /// NOTE: This list is **NOT** actually used in the store or library UI. See AppState for real data used by the app.
   static List<Audiobook> dummyAudiobooks = [
     Audiobook(
       id: '1',

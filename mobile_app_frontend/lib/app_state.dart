@@ -20,7 +20,8 @@ class AppState extends ChangeNotifier {
       id: 'mobydick',
       title: 'Moby Dick',
       author: 'Herman Melville',
-      coverUrl: 'https://covers.openlibrary.org/b/id/5551866-L.jpg',
+      // Use the correct, updated cover as in audiobook.dart
+      coverUrl: 'https://images.penguinrandomhouse.com/cover/9780143105954',
       price: 15.49,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
