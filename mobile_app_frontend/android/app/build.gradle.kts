@@ -6,6 +6,8 @@ plugins {
 }
 
 android {
+    // Specify the required NDK version for compatibility with audio plugins
+    ndkVersion = "27.0.12077973"
     // Set NDK version to resolve compatibility with audio plugins
     ndkVersion = "27.0.12077973"
     ndkVersion = "27.0.12077973"
