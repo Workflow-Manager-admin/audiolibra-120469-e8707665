@@ -9,6 +9,7 @@ android {
     // PUBLIC_INTERFACE
     namespace = "com.example.mobile_app_frontend"
     compileSdk = flutter.compileSdkVersion
+    ndkVersion = ""
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
