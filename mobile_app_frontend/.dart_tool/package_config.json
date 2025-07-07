@@ -8,10 +8,46 @@
       "languageVersion": "3.4"
     },
     {
-      "name": "audio_session",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/audio_session-0.1.25",
+      "name": "audioplayers",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/audioplayers-6.5.0",
       "packageUri": "lib/",
-      "languageVersion": "3.4"
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "audioplayers_android",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/audioplayers_android-5.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "audioplayers_darwin",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/audioplayers_darwin-6.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "audioplayers_linux",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/audioplayers_linux-4.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "audioplayers_platform_interface",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/audioplayers_platform_interface-7.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "audioplayers_web",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/audioplayers_web-5.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "audioplayers_windows",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/audioplayers_windows-4.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
     },
     {
       "name": "boolean_selector",
@@ -62,6 +98,12 @@
       "languageVersion": "3.7"
     },
     {
+      "name": "file",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/file-7.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "fixnum",
       "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/fixnum-1.1.1",
       "packageUri": "lib/",
@@ -75,9 +117,9 @@
     },
     {
       "name": "flutter_lints",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/flutter_lints-3.0.2",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/flutter_lints-2.0.3",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "2.19"
     },
     {
       "name": "flutter_test",
@@ -92,34 +134,16 @@
       "languageVersion": "3.7"
     },
     {
-      "name": "hive",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/hive-2.2.3",
+      "name": "http",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/http-0.13.6",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.19"
     },
     {
-      "name": "hive_flutter",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/hive_flutter-1.1.0",
+      "name": "http_parser",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/http_parser-4.1.2",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "just_audio",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/just_audio-0.9.46",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
-    },
-    {
-      "name": "just_audio_platform_interface",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/just_audio_platform_interface-4.5.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
-      "name": "just_audio_web",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/just_audio_web-0.4.16",
-      "packageUri": "lib/",
-      "languageVersion": "3.2"
+      "languageVersion": "3.4"
     },
     {
       "name": "leak_tracker",
@@ -141,7 +165,7 @@
     },
     {
       "name": "lints",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/lints-3.0.0",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/lints-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -230,10 +254,46 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "rxdart",
-      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/rxdart-0.28.0",
+      "name": "shared_preferences",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/shared_preferences-2.5.3",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.5"
+    },
+    {
+      "name": "shared_preferences_android",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/shared_preferences_android-2.4.10",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
+      "name": "shared_preferences_foundation",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "shared_preferences_linux",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.4.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "shared_preferences_platform_interface",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.4.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "shared_preferences_web",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/shared_preferences_web-2.4.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "shared_preferences_windows",
+      "rootUri": "file:///home/kavia/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.4.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
     },
     {
       "name": "sky_engine",
@@ -329,10 +389,10 @@
       "name": "mobile_app_frontend",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "2.19"
     }
   ],
-  "generated": "2025-07-07T06:43:11.119563Z",
+  "generated": "2025-07-07T08:03:16.661894Z",
   "generator": "pub",
   "generatorVersion": "3.7.0",
   "flutterRoot": "file:///opt/flutter",

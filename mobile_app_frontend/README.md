@@ -1,42 +1,55 @@
-# Audiolibra
+# Audiolibra Mobile App Frontend
 
-A modern, minimalistic Flutter app for browsing, purchasing, and listening to audiobooks.  
-- Browse store with search  
-- Purchase audiobooks via Stripe (stubbed for demo; implement with Stripe SDK)  
-- Persistent local library  
-- Full-featured audio playback with 15s skip, progress slider & position memory
-
-## Setup
-
-1. **Install Flutter**
-2. `flutter pub get`
-3. `flutter run`
+This is the Flutter frontend implementation of the Audiolibra mobile application. It allows users to browse and purchase audiobooks, manage their personal audiobook library, and play audiobooks with position tracking and skip controls.
 
 ## Features
 
-- Store tab: Browse, search, purchase audiobooks
-- Library tab: View purchased books
-- Player tab: Play audiobooks (resume, skip, position memory)
+- Audiobook store browsing and search
+- Purchase audiobooks via Stripe
+- Personal library of purchased audiobooks
+- Audiobook playback with position tracking
+- 15-second skip forward/back buttons
+- Display playback progress
+- Local storage of library and playback position
 
-**Colors:**
-- Primary: `#badbf7`
-- Secondary: `#583aee`
-- Accent: `#dcb7d9`
-- Light theme
+## Project Structure
 
-> _Stripe payment is simulated for demo; to go live follow [Flutter Stripe Payment docs](https://pub.dev/packages/stripe_payment) or use the official [flutter_stripe](https://pub.dev/packages/flutter_stripe) package._
+- `lib/`: All Dart source code
+- `assets/`: Images and asset files
+- `test/`: Widget and unit tests
+- Platform folders: `android/`, `ios/`, `macos/`, `linux/`, `windows/`, `web/`
 
-**Local storage:** Hive DB
+## Getting Started
 
-## Project structure
+1. Install [Flutter](https://flutter.dev/docs/get-started/install).
+2. Run `flutter pub get` to fetch dependencies.
+3. To run in debug mode: `flutter run`
+4. To build for production:  
+    - Android: `flutter build apk`
+    - iOS: `flutter build ios`
+    - Web: `flutter build web`
 
-- `lib/main.dart` — App entry point, theme, and navigation
-- `lib/store_screen.dart` — Audiobook store
-- `lib/library_screen.dart` — Purchased audiobooks
-- `lib/player_screen.dart` — Audiobook player
-- `lib/models/audiobook.dart` — Audiobook model
-- `lib/app_state.dart` — State management, local storage
+## Android/iOS Environment
+
+For best compatibility, use recommended NDK and SDK tools:
+- Flutter SDK: 3.10+
+- Dart: 2.19+
+- Android: Use NDK version as specified in project's `build.gradle` and `local.properties`
+- iOS: Xcode 14+
+
+If you experience build errors, ensure global Android and iOS tools are installed on your system.
+
+## Configuration Files
+
+- `pubspec.yaml`, `analysis_options.yaml`: Dart/Flutter project configuration.
+- `android/`, `ios/`: Platform-specific configuration and build files.
+
+## Troubleshooting
+
+- Clear cached builds if running into issues: `flutter clean`
+- Ensure all Flutter plugins and tools are up to date.
+- For dependency or build errors, consult [Flutter documentation](https://flutter.dev/docs/get-started/install).
 
 ## License
 
-MIT
+All rights reserved.
