@@ -3,7 +3,7 @@ import 'models/audiobook.dart';
 
 /// AppState holds audiobooks, library state, and purchase logic.
 class AppState extends ChangeNotifier {
-  // Canonical dummy data for the store
+  // Curated, real and famous audiobooks for the store:
   final List<Audiobook> _storeAudiobooks = [
     Audiobook(
       id: '1984',
@@ -13,153 +13,168 @@ class AppState extends ChangeNotifier {
       price: 12.99,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-      description: 'A dystopian social science fiction novel and cautionary tale about the dangers of totalitarianism.',
+      description:
+          'A dystopian social science fiction novel and cautionary tale about the dangers of totalitarianism.',
       durationSeconds: 39600, // 11 hours
     ),
     Audiobook(
       id: 'mobydick',
       title: 'Moby Dick',
       author: 'Herman Melville',
-      // Use the correct, updated cover as in audiobook.dart
       coverUrl: 'https://images.penguinrandomhouse.com/cover/9780143105954',
       price: 15.49,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
-      description: 'A classic tale of revenge and obsession on the high seas, featuring Captain Ahab and the white whale.',
+      description:
+          'A classic tale of revenge and obsession on the high seas, featuring Captain Ahab and the white whale.',
       durationSeconds: 79224, // 22 hours
     ),
     Audiobook(
       id: 'gatsby',
       title: 'The Great Gatsby',
       author: 'F. Scott Fitzgerald',
-      coverUrl: 'https://th.bing.com/th/id/R.9e2874738b560052dc4f931a5dd55202?rik=nsFx8BS3ebSyyQ&pid=ImgRaw&r=0',
+      coverUrl:
+          'https://th.bing.com/th/id/R.9e2874738b560052dc4f931a5dd55202?rik=nsFx8BS3ebSyyQ&pid=ImgRaw&r=0',
       price: 10.00,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
-      description: 'A portrait of the Jazz Age in all of its decadence and excess, told through the eyes of Nick Carraway.',
+      description:
+          'A portrait of the Jazz Age in all of its decadence and excess, told through the eyes of Nick Carraway.',
       durationSeconds: 18000, // 5 hours
     ),
     Audiobook(
       id: 'pride',
       title: 'Pride and Prejudice',
       author: 'Jane Austen',
-      coverUrl: 'https://images.squarespace-cdn.com/content/v1/58c180edff7c50dd0e51a2ad/1596042034594-2W8YVTNMCNUDY2FT9G73/Evensen+Creative+Edition+Front.jpg',
+      coverUrl:
+          'https://images.squarespace-cdn.com/content/v1/58c180edff7c50dd0e51a2ad/1596042034594-2W8YVTNMCNUDY2FT9G73/Evensen+Creative+Edition+Front.jpg',
       price: 9.99,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3',
-      description: 'A romantic novel of manners that depicts issues of marriage, morality, and misconceptions.',
+      description:
+          'A romantic novel of manners that depicts issues of marriage, morality, and misconceptions.',
       durationSeconds: 52052, // 14.5 hours
     ),
-    // --- New Dummy Books Below ---
+    // Famous real classics and must-reads start here
     Audiobook(
-      id: 'adventure-begins',
-      title: 'The Adventure Begins',
-      author: 'Jane Doe',
-      coverUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=facearea&w=400&h=600&facepad=2&q=80',
-      price: 11.49,
+      id: 'tokillamockingbird',
+      title: 'To Kill a Mockingbird',
+      author: 'Harper Lee',
+      coverUrl: 'https://covers.openlibrary.org/b/id/8228691-L.jpg',
+      price: 13.99,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3',
-      description: 'A heart-pounding journey of discovery and courage set in a mysterious world.',
-      durationSeconds: 20800, // ~5.8 hours
+      description:
+          "A coming-of-age story set in the American South, exploring justice and empathy through the eyes of young Scout Finch.",
+      durationSeconds: 41000,
     ),
     Audiobook(
-      id: 'mystery-clock',
-      title: 'Mystery of the Old Clock',
-      author: 'John Smith',
-      coverUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=400&h=600&facepad=2&q=80',
-      price: 8.99,
+      id: 'catcherintherye',
+      title: 'The Catcher in the Rye',
+      author: 'J.D. Salinger',
+      coverUrl: 'https://covers.openlibrary.org/b/id/8231994-L.jpg',
+      price: 12.25,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3',
-      description: 'When an old clock goes missing in a sleepy town, secrets unravel and friendships are tested.',
-      durationSeconds: 14100, // ~3.9 hours
+      description:
+          "Holden Caulfield recounts his days in New York City in this iconic coming-of-age novel.",
+      durationSeconds: 25920,
     ),
     Audiobook(
-      id: 'galactic-voyages',
-      title: 'Galactic Voyages',
-      author: 'Sarah Newton',
-      coverUrl: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=facearea&w=400&h=600&facepad=2&q=80',
-      price: 13.29,
+      id: 'hobbit',
+      title: 'The Hobbit',
+      author: 'J.R.R. Tolkien',
+      coverUrl: 'https://covers.openlibrary.org/b/id/6979861-L.jpg',
+      price: 14.99,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3',
-      description: 'Join Captain Reyes as they explore far-off galaxies and confront cosmic dangers.',
-      durationSeconds: 37200, // 10.3 hours
+      description:
+          "Bilbo Baggins journeys there and back again in Tolkien's fantasy classic.",
+      durationSeconds: 40000,
     ),
     Audiobook(
-      id: 'crimson-sky',
-      title: 'Under the Crimson Sky',
-      author: 'Liam Shepherd',
-      coverUrl: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=facearea&w=400&h=600&facepad=2&q=80',
-      price: 14.49,
+      id: 'frankenstein',
+      title: 'Frankenstein',
+      author: 'Mary Shelley',
+      coverUrl: 'https://www.gutenberg.org/files/84/84-h/images/cover.jpg',
+      price: 7.49,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3',
-      description: 'A sweeping historical drama of love, loss, and hope in war-torn landscapes.',
-      durationSeconds: 28100, // ~7.8 hours
+      description:
+          "The original tale of science, creation, and moral consequence, as Victor Frankenstein animates his monster.",
+      durationSeconds: 29995,
     ),
     Audiobook(
-      id: 'whispers-wind',
-      title: 'Whispers of the Wind',
-      author: 'Emily Brontë',
-      coverUrl: 'https://images.unsplash.com/photo-1482062364825-616fd23b8fc1?auto=format&fit=facearea&w=400&h=600&facepad=2&q=80',
-      price: 10.99,
+      id: 'sherlockholmes',
+      title: 'The Adventures of Sherlock Holmes',
+      author: 'Arthur Conan Doyle',
+      coverUrl: 'https://www.gutenberg.org/files/1661/1661-h/images/cover.jpg',
+      price: 9.99,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3',
-      description: 'Poignant poetic tales that drift on the breath of the moors.',
-      durationSeconds: 15000, // ~4.2 hours
+      description:
+          "Detective Holmes and Dr. Watson unravel the mysteries of Victorian London.",
+      durationSeconds: 22000,
     ),
     Audiobook(
-      id: 'last-alchemist',
-      title: 'The Last Alchemist',
-      author: 'David K. Marshall',
-      coverUrl: 'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=facearea&w=400&h=600&facepad=2&q=80',
-      price: 13.99,
+      id: 'janeeyre',
+      title: 'Jane Eyre',
+      author: 'Charlotte Brontë',
+      coverUrl: 'https://covers.openlibrary.org/b/id/8081703-L.jpg',
+      price: 11.79,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3',
-      description: 'A tale of ancient secrets, modern dangers, and the quest for a lost formula.',
-      durationSeconds: 31200, // 8.7 hours
+      description:
+          "Orphaned Jane Eyre overcomes a harsh childhood to find love and independence.",
+      durationSeconds: 49700,
     ),
     Audiobook(
-      id: 'silent-streets',
-      title: 'Silent Streets',
-      author: 'Nina Larsson',
-      coverUrl: 'https://images.unsplash.com/photo-1499346030926-9a72daac6c63?auto=format&fit=facearea&w=400&h=600&facepad=2&q=80',
-      price: 8.49,
+      id: 'warandpeace',
+      title: 'War and Peace',
+      author: 'Leo Tolstoy',
+      coverUrl: 'https://covers.openlibrary.org/b/id/7222246-L.jpg',
+      price: 17.49,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3',
-      description: 'Urban noir at its finest, where the shadows whisper and justice is hard-won.',
-      durationSeconds: 11000, // ~3.1 hours
+      description:
+          "Tolstoy's epic explores love, fate, and the sweep of history during the Napoleonic Wars.",
+      durationSeconds: 132000,
     ),
     Audiobook(
-      id: 'ocean-dreams',
-      title: 'Ocean of Dreams',
-      author: 'Carlos Rios',
-      coverUrl: 'https://images.unsplash.com/photo-1444065381814-865dc9da92c0?auto=format&fit=facearea&w=400&h=600&facepad=2&q=80',
-      price: 12.49,
+      id: 'odyssey',
+      title: 'The Odyssey',
+      author: 'Homer',
+      coverUrl: 'https://covers.openlibrary.org/b/id/8231856-L.jpg',
+      price: 10.29,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3',
-      description: 'A magical realism journey where the ocean waves hold memories and futures.',
-      durationSeconds: 17490, // ~4.8 hours
+      description:
+          "Odysseus's perilous journey home from the Trojan War is chronicled in this foundational classic.",
+      durationSeconds: 40200,
     ),
     Audiobook(
-      id: 'ancient-gates',
-      title: 'Through the Ancient Gates',
-      author: 'Priya Patel',
-      coverUrl: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=facearea&w=400&h=600&facepad=2&q=80',
-      price: 13.49,
+      id: 'littlewomen',
+      title: 'Little Women',
+      author: 'Louisa May Alcott',
+      coverUrl: 'https://covers.openlibrary.org/b/id/8281991-L.jpg',
+      price: 8.99,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3',
-      description: 'Fantasy adventure into long-lost realms inspired by ancient Asian folklore.',
-      durationSeconds: 20300, // ~5.6 hours
+      description:
+          "The March sisters grow up in Civil War-era New England with love, ambition, and hope.",
+      durationSeconds: 39000,
     ),
     Audiobook(
-      id: 'edge-reality',
-      title: 'Edge of Reality',
-      author: 'Oliver Yu',
-      coverUrl: 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=facearea&w=400&h=600&facepad=2&q=80',
-      price: 11.29,
+      id: 'grapesofwrath',
+      title: 'The Grapes of Wrath',
+      author: 'John Steinbeck',
+      coverUrl: 'https://covers.openlibrary.org/b/id/8316918-L.jpg',
+      price: 12.99,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3',
-      description: 'Science, conspiracy, and heart-pounding thriller at the boundary of the unknown.',
-      durationSeconds: 18920, // ~5.3 hours
+      description:
+          "The Joad family migrates west during the Great Depression in this classic of American literature.",
+      durationSeconds: 67000,
     ),
   ];
 
