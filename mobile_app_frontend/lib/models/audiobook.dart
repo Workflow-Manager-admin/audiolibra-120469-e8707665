@@ -100,8 +100,8 @@ class Audiobook {
       id: '3',
       title: 'Moby Dick',
       author: 'Herman Melville',
-      // Cover from Open Library, PD
-      coverUrl: 'https://covers.openlibrary.org/b/id/7222246-L.jpg',
+      // Updated cover from Penguin Random House as per request
+      coverUrl: 'https://images.penguinrandomhouse.com/cover/9780143105954',
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
       price: 10.99,
