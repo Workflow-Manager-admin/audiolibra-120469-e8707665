@@ -60,7 +60,7 @@ class AppState extends ChangeNotifier {
       id: 'tokillamockingbird',
       title: 'To Kill a Mockingbird',
       author: 'Harper Lee',
-      coverUrl: 'https://covers.openlibrary.org/b/id/8228691-L.jpg',
+      coverUrl: 'https://covers.openlibrary.org/b/id/8228691-L.jpg', // OpenLibrary
       price: 13.99,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3',
@@ -72,7 +72,7 @@ class AppState extends ChangeNotifier {
       id: 'catcherintherye',
       title: 'The Catcher in the Rye',
       author: 'J.D. Salinger',
-      coverUrl: 'https://covers.openlibrary.org/b/id/10553313-L.jpg',
+      coverUrl: 'https://covers.openlibrary.org/b/id/8231856-L.jpg', // OpenLibrary
       price: 12.25,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3',
@@ -84,7 +84,7 @@ class AppState extends ChangeNotifier {
       id: 'hobbit',
       title: 'The Hobbit',
       author: 'J.R.R. Tolkien',
-      coverUrl: 'https://covers.openlibrary.org/b/id/6979861-L.jpg',
+      coverUrl: 'https://covers.openlibrary.org/b/id/6979861-L.jpg', // OpenLibrary
       price: 14.99,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3',
@@ -96,7 +96,7 @@ class AppState extends ChangeNotifier {
       id: 'frankenstein',
       title: 'Frankenstein',
       author: 'Mary Shelley',
-      coverUrl: 'https://covers.openlibrary.org/b/id/8231856-L.jpg',
+      coverUrl: 'https://covers.openlibrary.org/b/id/8231990-L.jpg', // OpenLibrary
       price: 7.49,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3',
@@ -108,7 +108,7 @@ class AppState extends ChangeNotifier {
       id: 'sherlockholmes',
       title: 'The Adventures of Sherlock Holmes',
       author: 'Arthur Conan Doyle',
-      coverUrl: 'https://covers.openlibrary.org/b/id/8225265-L.jpg',
+      coverUrl: 'https://covers.openlibrary.org/b/id/8311836-L.jpg', // OpenLibrary
       price: 9.99,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3',
@@ -120,7 +120,7 @@ class AppState extends ChangeNotifier {
       id: 'janeeyre',
       title: 'Jane Eyre',
       author: 'Charlotte Brontë',
-      coverUrl: 'https://covers.openlibrary.org/b/id/8084976-L.jpg',
+      coverUrl: 'https://covers.openlibrary.org/b/id/8228781-L.jpg', // OpenLibrary
       price: 11.79,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3',
@@ -132,7 +132,7 @@ class AppState extends ChangeNotifier {
       id: 'warandpeace',
       title: 'War and Peace',
       author: 'Leo Tolstoy',
-      coverUrl: 'https://covers.openlibrary.org/b/id/8319251-L.jpg',
+      coverUrl: 'https://covers.openlibrary.org/b/id/7222246-L.jpg', // OpenLibrary
       price: 17.49,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3',
@@ -144,7 +144,7 @@ class AppState extends ChangeNotifier {
       id: 'odyssey',
       title: 'The Odyssey',
       author: 'Homer',
-      coverUrl: 'https://covers.openlibrary.org/b/id/10524752-L.jpg',
+      coverUrl: 'https://covers.openlibrary.org/b/id/8084975-L.jpg', // OpenLibrary
       price: 10.29,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3',
@@ -156,7 +156,7 @@ class AppState extends ChangeNotifier {
       id: 'littlewomen',
       title: 'Little Women',
       author: 'Louisa May Alcott',
-      coverUrl: 'https://covers.openlibrary.org/b/id/8225422-L.jpg',
+      coverUrl: 'https://covers.openlibrary.org/b/id/11509082-L.jpg', // OpenLibrary
       price: 8.99,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3',
@@ -168,7 +168,7 @@ class AppState extends ChangeNotifier {
       id: 'grapesofwrath',
       title: 'The Grapes of Wrath',
       author: 'John Steinbeck',
-      coverUrl: 'https://covers.openlibrary.org/b/id/10582207-L.jpg',
+      coverUrl: 'https://covers.openlibrary.org/b/id/8686676-L.jpg', // OpenLibrary
       price: 12.99,
       sampleUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3',
       audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3',
