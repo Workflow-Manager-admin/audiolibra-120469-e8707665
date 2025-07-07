@@ -1,72 +1,116 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'app_state.dart';
-import 'store_screen.dart';
-import 'library_screen.dart';
-import 'player_screen.dart';
+import 'package:mobile_app_frontend/store_screen.dart';
+import 'package:mobile_app_frontend/library_screen.dart';
+import 'package:mobile_app_frontend/player_screen.dart';
 
+import 'package:mobile_app_frontend/app_state.dart';
+// Provider is required for state management
+import 'package:provider/provider.dart';
+
+// PUBLIC_INTERFACE
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  final appState = AppState();
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => AppState(),
+    ChangeNotifierProvider<AppState>.value(
+      value: appState,
       child: const AudiolibraApp(),
     ),
   );
 }
 
+/// The main Audiolibra application widget.
 class AudiolibraApp extends StatelessWidget {
-  const AudiolibraApp({Key? key}) : super(key: key);
-
-  static const primaryColor = Color(0xffbadbf7);
-  static const secondaryColor = Color(0xff583aee);
-  static const accentColor = Color(0xffdcb7d9);
+  // Use super.key for modern style
+  const AudiolibraApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    const primaryColor = Color(0xFFbadbf7);
+    const secondaryColor = Color(0xFF583aee);
+    const accentColor = Color(0xFFdcb7d9);
+
     return MaterialApp(
       title: 'Audiolibra',
       theme: ThemeData(
         brightness: Brightness.light,
+        scaffoldBackgroundColor: Colors.white,
         primaryColor: primaryColor,
-        colorScheme: ColorScheme.light(
+        colorScheme: const ColorScheme.light(
           primary: primaryColor,
           secondary: secondaryColor,
+          tertiary: accentColor,
         ),
-        scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
           backgroundColor: primaryColor,
+          foregroundColor: Colors.black87,
+          elevation: 0,
         ),
-        useMaterial3: true,
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Colors.white,
+          selectedItemColor: secondaryColor,
+          unselectedItemColor: Color(0xFF757575), // Colors.grey[600]
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+        ),
+        textTheme: const TextTheme(
+          headlineSmall: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        sliderTheme: SliderThemeData(
+          activeTrackColor: secondaryColor,
+          thumbColor: accentColor,
+          // withValues returns a new color with specified alpha (0.1 x 255 for ~10%)
+          overlayColor: accentColor.withAlpha((0.1 * 255).toInt()),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            // Use WidgetStatePropertyAll (Flutter >= 3.19.0-0.3.pre) - here we optimistically use it.
+            backgroundColor: const WidgetStatePropertyAll<Color>(secondaryColor),
+            foregroundColor: const WidgetStatePropertyAll<Color>(Colors.white),
+            elevation: const WidgetStatePropertyAll<double>(0),
+            shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+          ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: accentColor),
+          ),
+        ),
       ),
-      home: const MainNavigation(),
+      home: const HomeScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class MainNavigation extends StatefulWidget {
-  const MainNavigation({Key? key}) : super(key: key);
+/// The main home screen with bottom navigation and tab management.
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<MainNavigation> createState() => _MainNavigationState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _MainNavigationState extends State<MainNavigation> {
-  int _currentIndex = 0;
-
-  final List<Widget> _screens = [
-    StoreScreen(),
-    LibraryScreen(),
-    PlayerScreen(),
-  ];
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedTab = 0;
 
   @override
   Widget build(BuildContext context) {
+    final tabs = [
+      const StoreScreen(),
+      const LibraryScreen(),
+      const PlayerScreen(), // No arguments, pulls from Provider/AppState
+    ];
     return Scaffold(
-      body: _screens[_currentIndex],
+      body: tabs[_selectedTab],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        selectedItemColor: AudiolibraApp.secondaryColor,
-        unselectedItemColor: Colors.black38,
+        currentIndex: _selectedTab,
+        onTap: (idx) => setState(() => _selectedTab = idx),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.store),
@@ -77,11 +121,10 @@ class _MainNavigationState extends State<MainNavigation> {
             label: 'Library',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.play_arrow),
+            icon: Icon(Icons.play_circle),
             label: 'Player',
           ),
         ],
-        onTap: (int i) => setState(() => _currentIndex = i),
       ),
     );
   }

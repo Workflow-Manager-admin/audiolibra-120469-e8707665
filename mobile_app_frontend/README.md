@@ -1,11 +1,42 @@
-# Mobile App Frontend
+# Audiolibra
 
-Audiobook store and player Flutter app – restored to last known working state via version control reset.
+A modern, minimalistic Flutter app for browsing, purchasing, and listening to audiobooks.  
+- Browse store with search  
+- Purchase audiobooks via Stripe (stubbed for demo; implement with Stripe SDK)  
+- Persistent local library  
+- Full-featured audio playback with 15s skip, progress slider & position memory
 
-> This file and all others in this directory have been restored to the last successful build/deploy commit to recover from persistent environment/tooling errors.
+## Setup
 
-- Dart/Flutter code (lib/, test/, pubspec.yaml, etc.)
-- Gradle, Android, iOS, Linux, macOS, Windows platform folders
-- All CI/build config
+1. **Install Flutter**
+2. `flutter pub get`
+3. `flutter run`
 
-If you made recent uncommitted changes that broke the build, those changes are not present in this restored version.
+## Features
+
+- Store tab: Browse, search, purchase audiobooks
+- Library tab: View purchased books
+- Player tab: Play audiobooks (resume, skip, position memory)
+
+**Colors:**
+- Primary: `#badbf7`
+- Secondary: `#583aee`
+- Accent: `#dcb7d9`
+- Light theme
+
+> _Stripe payment is simulated for demo; to go live follow [Flutter Stripe Payment docs](https://pub.dev/packages/stripe_payment) or use the official [flutter_stripe](https://pub.dev/packages/flutter_stripe) package._
+
+**Local storage:** Hive DB
+
+## Project structure
+
+- `lib/main.dart` — App entry point, theme, and navigation
+- `lib/store_screen.dart` — Audiobook store
+- `lib/library_screen.dart` — Purchased audiobooks
+- `lib/player_screen.dart` — Audiobook player
+- `lib/models/audiobook.dart` — Audiobook model
+- `lib/app_state.dart` — State management, local storage
+
+## License
+
+MIT
