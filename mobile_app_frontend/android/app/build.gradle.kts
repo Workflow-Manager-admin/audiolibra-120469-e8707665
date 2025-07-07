@@ -6,10 +6,13 @@ plugins {
 }
 
 android {
+    // Set the required NDK version. PUBLIC_INTERFACE
+    // This ensures compatibility and reproducibility for native builds.
+ "27.0.12077973"
     // NDK version required for build compatibility
-    ndkVersion = "27.0.12077973"
+ "27.0.12077973"
     // Set the required NDK version for build consistency. Only a single definition present.
-    ndkVersion = "27.0.12077973"
+ "27.0.12077973"
     namespace = "com.example.mobile_app_frontend"
     compileSdk = flutter.compileSdkVersion
 
